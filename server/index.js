@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require ('path');
+const { Users, Trips, Weather } = require('./db/index')
 const clientPath = path.resolve(__dirname, '..', 'dist');
 const port = 8080;
 
