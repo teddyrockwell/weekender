@@ -2,6 +2,7 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const passportSetup = require('./passport')
+const authRoutes = require('./routes/auth')
 const cors = require('cors');
 const path = require ('path');
 const { Users, Trips, Weather } = require('./db/index');
