@@ -9,28 +9,21 @@ const logout = () =>{
 
 
 
-  //user briefly starts as null when the page first loads without making sure it has values it breaks the page
-  if(user){
+  
+
   return(
 
    <div className="home">
-      <button onClick={(logout)}>Log Out</button>
-      <h1> Welcome Back {user.displayName} this is the main homepage</h1>
-
+    <h1 className="weekendertext">WEEKENDER
+    <button className='logoutButton' onClick={(logout)}>Log Out</button>
+      <h3 className='welcome'> Welcome Back {user.displayName.split(" ")[0]}</h3>
+    </h1>
+    <div className='container'>
+    <button className="addTripHome" >PLAN YOUR TRIP</button>
+    <button className="upcomingTrip" >Upcoming Trip</button>
     </div>
-    
+    </div>
   )
-  }else{
-    return(
-     
-          <div className="home">
-            <button onClick={(logout)}>Log Out</button>
-            <h1> this is the main homepage</h1>
-      
-          </div>
-          
-        )
-  }
-}
+};
 
 export default Home
