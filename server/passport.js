@@ -19,8 +19,26 @@ function(accessToken, refreshToken, profile, cb) {
     googleId: profile.id,
     avatar: profile.photos[0].value
   }
-  cb(null, profile);
-  console.log(user)
+ Users.findOne({googleId: profile.id})
+ .then((existingUser)=>{
+  if(existingUser){
+    
+    return cb(null, profile);
+  }
+  Users.create(user)
+  .then((user)=>{
+    console.log('succesfully created user', user)
+    cb(null, profile);
+  })
+  .catch((err)=>{
+    console.log('could not add user to db', err)
+    cb(err, null);
+  })
+ })
+ .catch((err)=>{
+  console.log('could not find user', err)
+  cb(err, null);
+ })
 }
 ));
 
