@@ -22,7 +22,6 @@ function(accessToken, refreshToken, profile, cb) {
  Users.findOne({googleId: profile.id})
  .then((existingUser)=>{
   if(existingUser){
-    
     return cb(null, profile);
   }
   Users.create(user)
