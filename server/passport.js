@@ -1,6 +1,7 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require('passport');
-const { Users } = require('./db/index')
+const mongoose = require('mongoose');
+const { Users } = require('./db/index');
 
 
 const GOOGLE_CLIENT_ID = "270227781239-3ndt34703bp9geojo944i087o2kj83md.apps.googleusercontent.com"
@@ -9,17 +10,17 @@ const GOOGLE_CLIENT_SECRET ="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"
 passport.use(new GoogleStrategy({
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: "/auth/google/callback"
+  callbackURL: "/auth/google/callback",
+  scope: ["profile", "email"]
 },
 function(accessToken, refreshToken, profile, cb) {
   const user = {
     username: profile.displayName,
     googleId: profile.id,
-    avatar: profile.photos[0]
+    avatar: profile.photos[0].value
   }
-  Users.findOrCreate(user, function (err, user) {
-    return cb(err, user);
-  });
+  cb(null, profile);
+  console.log(user)
 }
 ));
 

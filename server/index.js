@@ -30,11 +30,16 @@ app.use(cors({
 }))
 
 //allows the server to change routes with react router
-app.get('*', (req, res) =>{
-    res.sendFile(path.join(clientPath, 'index.html'))
-});
+// app.get('*', (req, res) =>{
+//     res.sendFile(path.join(clientPath, 'index.html'))
+// });
 
 app.use("/auth", authRoute);
+
+// app.get('/auth/google',
+//   passport.authenticate('google', { scope: ['profile'] }));
+
+  
 
 app.listen(port, () => {
     console.log(`Listening on PORT: ${port}`);

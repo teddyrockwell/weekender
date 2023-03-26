@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Login = () =>{
   const google = ()=>{
-    console.log('fuckyou')
+    
     window.open("http://localhost:8080/auth/google/")
   }
   return(
