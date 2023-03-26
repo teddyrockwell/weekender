@@ -1,0 +1,19 @@
+.weekendertext{
+  font-family: 'Karantina', Arial, sans-serif;
+  color: beige;
+  margin-left: 15px;
+ 
+}
+.googleLogin{
+  margin-right: 15px;
+  float: right;
+  size: 10px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 40px;
+
+  border-radius: 20px;
+}
+body{
+  background-color: rgb(160, 63, 63)
+}

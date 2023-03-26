@@ -9,8 +9,10 @@ const Login = () =>{
   return(
     <div>
        
-      <h1 className="loginTitle"> Login with your Google Account</h1>
+      <h1 className="weekendertext"> WEEKENDER
       <button className="googleLogin" onClick={google}>Log In</button>
+      </h1>
+      
 
     </div>
   )
