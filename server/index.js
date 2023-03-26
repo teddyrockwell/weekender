@@ -9,6 +9,9 @@ const app = express();
 
 app.use(express.static(clientPath));
 
+app.get('*', (req, res) =>{
+    res.sendFile(path.join(clientPath, 'index.html'))
+})
 
 app.listen(port, () => {
     console.log(`Listening on PORT: ${port}`);
