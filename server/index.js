@@ -2,7 +2,7 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const passportSetup = require('./passport')
-const authRoutes = require('./routes/auth')
+const authRoute = require('./routes/auth')
 const cors = require('cors');
 const path = require ('path');
 const { Users, Trips, Weather } = require('./db/index');
@@ -32,7 +32,9 @@ app.use(cors({
 //allows the server to change routes with react router
 app.get('*', (req, res) =>{
     res.sendFile(path.join(clientPath, 'index.html'))
-})
+});
+
+app.use("/auth", authRoute);
 
 app.listen(port, () => {
     console.log(`Listening on PORT: ${port}`);
