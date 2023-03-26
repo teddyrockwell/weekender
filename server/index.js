@@ -1,6 +1,8 @@
 const express = require('express');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const path = require ('path');
-const { Users, Trips, Weather } = require('./db/index')
+const { Users, Trips, Weather } = require('./db/index');
 const clientPath = path.resolve(__dirname, '..', 'dist');
 const port = 8080;
 
@@ -9,6 +11,15 @@ const app = express();
 
 app.use(express.static(clientPath));
 
+//start a new cookie session
+app.use(
+    cookieSession({name: "session", keys: ["weekender"], maxAge: 24 * 60 * 60 * 100})
+);
+//use passport for authentication
+app.use(passport.initialize())
+app.use(passport.session())
+
+//allows the server to change routes with react router
 app.get('*', (req, res) =>{
     res.sendFile(path.join(clientPath, 'index.html'))
 })
