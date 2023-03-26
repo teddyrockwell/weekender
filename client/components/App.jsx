@@ -33,17 +33,21 @@ const App = () => {
 console.log(user)
 
   return (
+<BrowserRouter>
+<Routes>
+{user ? (
+  <Route path="/" element={<Home user={user} />} />
+) : (
+<Route path="/" element={<Login />} />
+)}
+</Routes>
+</BrowserRouter>
 
-    <BrowserRouter>
-    <div>
-      <Routes>
-        <Route path="/" element={ <Home user={user}/> } />
-        <Route path="/login" element={user ? <Navigate to="/"/> : <Login />} />
-      </Routes>
-    </div>
-    </BrowserRouter>
   )
 }
+
+
+
 
 
 
