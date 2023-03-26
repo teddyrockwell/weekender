@@ -6,6 +6,7 @@ mongoose.connect(DB_URI);
 
 const UserSchema = new mongoose.Schema({
   username: String,
+  googleId: String || Number,
   tripsIds: [String]
 
 });

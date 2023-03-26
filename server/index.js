@@ -1,6 +1,8 @@
 const express = require('express');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const passportSetup = require('./passport')
+const cors = require('cors');
 const path = require ('path');
 const { Users, Trips, Weather } = require('./db/index');
 const clientPath = path.resolve(__dirname, '..', 'dist');
@@ -18,6 +20,13 @@ app.use(
 //use passport for authentication
 app.use(passport.initialize())
 app.use(passport.session())
+
+//cors
+app.use(cors({
+    origin: "http://localhost:8080",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+}))
 
 //allows the server to change routes with react router
 app.get('*', (req, res) =>{
