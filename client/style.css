@@ -1,0 +1,118 @@
+/* 
+login page
+*/
+
+.weekendertext{
+  font-family: 'Karantina', Arial, sans-serif;
+  color: beige;
+  margin-left: 15px;
+ 
+}
+.googleLogin{
+  margin-right: 15px;
+  float: right;
+  size: 10px;
+  font-size: 20px;
+  font-family: 'Karantina', Arial, sans-serif;
+  padding: 10px 40px;
+  border-radius: 20px;
+}
+
+
+.addTrip{
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 100px;
+  padding: 200px 200px;
+  border-radius: 30px;
+  font-size: 30px;
+  background-color: rgb(208, 130, 74);
+  font-family: 'Karantina', Arial, sans-serif;
+  color: beige;
+}
+
+body{
+  background-color: rgb(160, 63, 63)
+}
+/* 
+home page
+*/
+
+.logoutButton{
+  margin-right: 15px;
+  float: right;
+  size: 10px;
+  font-size: 20px;
+  font-family: 'Karantina', Arial, sans-serif;
+  padding: 10px 40px;
+  border-radius: 20px;
+}
+
+.welcome{
+
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.addTripHome{
+  display: inline-flex;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 200px 200px;
+  border-radius: 30px;
+  font-size: 30px;
+  background-color: rgb(208, 130, 74);
+  font-family: 'Karantina', Arial, sans-serif;
+  color: beige;
+}
+
+.upcomingTrip{
+  display: inline-flex;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 200px 200px;
+  padding: 200px 200px;
+  border-radius: 30px;
+  font-size: 30px;
+  background-color: rgb(208, 130, 74);
+  font-family: 'Karantina', Arial, sans-serif;
+  color: beige;
+
+}
+
+/* 
+Add trip page */
+
+.topContainer{
+  display: flex;
+  align-items: flex-start;
+}
+
+
+/* 
+ucpming trip page */
+
+.listButton{
+
+ 
+  float: right;
+  color: beige;
+  background-color: rgb(208, 130, 74);
+  font-size: 20px;
+  font-family: 'Karantina', Arial, sans-serif;
+  padding: 10px 40px;
+  border-radius: 20px;
+}
