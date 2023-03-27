@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const PackingList = ()=>{
 
   const logout = () =>{
-    window.open("http://localhost:8080/auth/logout", "_self");
+    window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
 
 return(

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Login = () =>{
   const google = ()=>{
     
-    window.open("http://localhost:8080/auth/google/", "_self")
+    window.open(`${process.env.REACT_APP_CLIENT_URL}auth/google/`, "_self")
   }
   return(
     <div>

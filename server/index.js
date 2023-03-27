@@ -9,7 +9,7 @@ const path = require ('path');
 const { Users, Trips, Weather } = require('./db/index');
 const clientPath = path.resolve(__dirname, '..', 'dist');
 const port = 8080;
-
+require('dotenv').config();
 // dotenv.config({
 //     path: path.resolve(__dirname, '../.env'),
 //   });
@@ -28,7 +28,7 @@ app.use(passport.session())
 
 //cors
 app.use(cors({
-    origin: "http://localhost:8080",
+    origin: process.env.CLIENT_URL,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }))
