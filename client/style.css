@@ -92,3 +92,27 @@ home page
   color: beige;
 
 }
+
+/* 
+Add trip page */
+
+.topContainer{
+  display: flex;
+  align-items: flex-start;
+}
+
+
+/* 
+ucpming trip page */
+
+.listButton{
+
+ 
+  float: right;
+  color: beige;
+  background-color: rgb(208, 130, 74);
+  font-size: 20px;
+  font-family: 'Karantina', Arial, sans-serif;
+  padding: 10px 40px;
+  border-radius: 20px;
+}

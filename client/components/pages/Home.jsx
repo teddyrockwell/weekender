@@ -19,8 +19,12 @@ const logout = () =>{
       <h3 className='welcome'> Welcome Back {user.displayName.split(" ")[0]}</h3>
     </h1>
     <div className='container'>
+      <Link to="/new-trip" style={{textDecoration: 'none'}}>
     <button className="addTripHome" >PLAN YOUR TRIP</button>
+    </Link>
+    <Link to="/upcoming-trip" style={{textDecoration: 'none'}}>
     <button className="upcomingTrip" >Upcoming Trip</button>
+    </Link>
     </div>
     </div>
   )
