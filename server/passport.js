@@ -2,16 +2,14 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require('passport');
 const mongoose = require('mongoose');
 const { Users } = require('./db/index');
-// const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('./config');
-
-const GOOGLE_CLIENT_ID= "keys here for now"
-const GOOGLE_CLIENT_SECRET= "keys here for now"
+require('dotenv').config();
+//const config = require('./config');
 
 passport.use(new GoogleStrategy({
-  clientID: GOOGLE_CLIENT_ID,
-  clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: "/auth/google/callback",
-  scope: ["profile", "email"]
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: '/auth/google/callback',
+  scope: ['profile', 'email']
 },
 function(accessToken, refreshToken, profile, cb) {
   const user = {
