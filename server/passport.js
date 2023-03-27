@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const { Users } = require('./db/index');
 // const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('./config');
 
-const GOOGLE_CLIENT_ID="270227781239-3ndt34703bp9geojo944i087o2kj83md.apps.googleusercontent.com"
-const GOOGLE_CLIENT_SECRET="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"
+const GOOGLE_CLIENT_ID= "keys here for now"
+const GOOGLE_CLIENT_SECRET= "keys here for now"
 
 passport.use(new GoogleStrategy({
   clientID: GOOGLE_CLIENT_ID,
