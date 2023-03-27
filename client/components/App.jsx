@@ -16,7 +16,7 @@ const App = () => {
 //this function is grabbing the login information for logging in succesfully
   useEffect(()=>{
     const getUser = ()=>{
-    axios.get("http://localhost:8080/auth/login/success")
+    axios.get(`${process.env.REACT_APP_CLIENT_URL}auth/login/success`)
     .then((response)=>{
       console.log(response)
       if(response.status===200){
