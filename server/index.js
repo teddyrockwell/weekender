@@ -5,10 +5,14 @@ const passportSetup = require('./passport')
 const authRoute = require('./routes/auth')
 const cors = require('cors');
 const path = require ('path');
+const dotenv = require('dotenv');
 const { Users, Trips, Weather } = require('./db/index');
 const clientPath = path.resolve(__dirname, '..', 'dist');
 const port = 8080;
 
+dotenv.config({
+    path: path.resolve(__dirname, '../.env'),
+  });
 
 const app = express();
 
