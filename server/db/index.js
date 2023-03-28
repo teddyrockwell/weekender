@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
   tripsIds: [String]
 
 });
-
+//Matts packing list is in here
 const TripSchema = new mongoose.Schema({
     dateStart: String,
     dateEnd: String,
