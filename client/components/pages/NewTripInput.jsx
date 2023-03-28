@@ -100,14 +100,14 @@ return(
 
 };
 
-const DisplayTripInfo = (props) => {
+const DisplayTripInfo = ({ selectedState, startDate, endDate }) => {
 return (
   <div>
-    {props.selectedState}
+    {selectedState}
     <br />
-    {props.startDate}
+    {startDate}
     <br />
-    {props.endDate}
+    {endDate}
   </div>
 )
 }
