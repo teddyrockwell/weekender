@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import NewTrip from './pages/NewTrip'
 import UpcomingTrip from './pages/UpcomingTrip'
 import PackingList from './pages/PackingList'
+import ChosenCampground from './pages/ChosenCampground'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -47,6 +48,7 @@ console.log(user)
 <Route path="/new-trip" element={<NewTrip />} />
 <Route path="/upcoming-trip" element={<UpcomingTrip />} />
 <Route path="/packing-list" element={<PackingList/>} />
+<Route path="/chosen-campground" element={<ChosenCampground/>} />
 </Routes>
 </BrowserRouter>
 
