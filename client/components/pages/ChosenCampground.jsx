@@ -11,18 +11,25 @@ console.log(campground)
   }
 
 return(
-
-  <div className="ChosenCampgroundPage">
+<div>
+  <div className="TopStuff">
    <h1 className="weekendertext">
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
      <h3 className='ChosenCampGroundName'>{campground.FacilityName}</h3>
    </h1>
-   <img className="ChosenCampGroundPhoto" src={campground.MEDIA[0].URL}/>
-   <div className="CampGroundDesc"dangerouslySetInnerHTML={{ __html: campground.FacilityDescription }} />
-    <div className="CampGroundLat">Lattitude:{campground.FacilityLatitude}</div>
-    <div className="CampGroundLong">Longitude:{campground.FacilityLongitude}</div>
    </div>
+   <div className='BottomStuff'>
+   <img className="ChosenCampGroundPhoto" src={campground.MEDIA[0].URL}/>
+   <button className='saveTripButton'>SAVE TRIP</button>
+   <Link to='/new-trip' style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
+   <button className='goBackButton'>GO BACK</button>
+   </Link>
+   <div className="ChosenCampGroundDesc"dangerouslySetInnerHTML={{ __html: campground.FacilityDescription }} />
+    <div className="ChosenCampGroundLat">Lattitude:{campground.FacilityLatitude}</div>
+    <div className="ChosenCampGroundLong">Longitude:{campground.FacilityLongitude}</div>
+    </div>
+    </div>
  )
 
 };
