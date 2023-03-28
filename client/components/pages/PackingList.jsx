@@ -7,17 +7,27 @@ function PackingList(props) {
 
   useEffect(() => {
     getList();
+    findTrip();
   }, []);
 
-  function getList() {
-    axios.get(`/packing/64231f974da8ee7d18c25517`)
-    .then(({ list }) => {
-      setList(list)
-    })
-    .catch((err) => {
-      console.error('Could not GET packing list:', err)
-    })
+  function findTrip() {
+    //console.log(props.user)
   }
+
+  function getList() {
+    axios.get(`/packing/list/642360a9fe014d9942e40212`)
+      .then(({ data }) => {
+        console.log(data)
+        setList(data.packingList)
+      })
+      .catch((err) => {
+        console.error('Could not GET packing list:', err)
+      })
+  }
+
+  //setList(list => [...list, data.packingList])
+
+  console.log(list)
 
   const logout = () => {
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
@@ -33,7 +43,7 @@ function PackingList(props) {
       </h1>
       <div className='packing-container'>
         <ul className='packing-list'>
-          {}
+          {list.map((item, index) => <li key={index}>{item}</li>)}
         </ul>
       </div>
     </div>

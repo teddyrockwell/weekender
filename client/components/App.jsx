@@ -45,8 +45,8 @@ console.log(user)
 <Route path="/" element={<Login />} />
 )}
 <Route path="/new-trip" element={<NewTrip />} />
-<Route path="/upcoming-trip" element={<UpcomingTrip user={user}/>} />
-<Route path="/packing-list" element={<PackingList/>} />
+<Route path="/upcoming-trip" element={<UpcomingTrip/>} />
+<Route path="/packing-list" element={<PackingList user={user}/>} />
 </Routes>
 </BrowserRouter>
 
