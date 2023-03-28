@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom'
 
 
 
-const UpcomingTrip = ()=>{
+const UpcomingTrip = ({user})=>{
 
+
+  
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }

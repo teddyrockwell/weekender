@@ -2,7 +2,10 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const passportSetup = require('./passport')
-const authRoute = require('./routes/auth')
+const authRoute = require('./routes/auth');
+// const weatherRoute = require('./routes/weather');
+// const campGroundsRoute = require('./routes/campGrounds');
+const List = require('./routes/packing');
 const cors = require('cors');
 const path = require ('path');
 // const dotenv = require('dotenv');
@@ -39,6 +42,9 @@ app.use(cors({
 // });
 
 app.use("/auth", authRoute);
+// app.use("/weather", weatherRoute);
+app.use("/packing", List);
+// app.use("/campGrounds", campGroundsRoute);
 
 // app.get('/auth/google',
 //   passport.authenticate('google', { scope: ['profile'] }));
