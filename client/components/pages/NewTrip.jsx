@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-
+import CampGroundsList from '../CampgroundsList';
 
 
 const NewTrip = ()=>{
@@ -17,7 +17,7 @@ return(
      <h3 className='welcome'>WHERE YA HEADED</h3>
    </h1>
    <div className='container'>
-   
+   <CampGroundsList />
    </div>
    </div>
  )

@@ -116,3 +116,16 @@ ucpming trip page */
   padding: 10px 40px;
   border-radius: 20px;
 }
+
+/* 
+Campground List styles */
+.CampGroundsListContainer{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:10px
+}
+
+.CampGroundPhoto{
+  width: 300px;
+  height:300px;
+}
