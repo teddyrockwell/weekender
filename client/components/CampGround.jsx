@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 const CampGround = ({campground})=>{
 
 // console.log('urltest',campground.MEDIA[0].URL)
@@ -10,7 +10,7 @@ const CampGround = ({campground})=>{
   
     
     <div className="CampGroundContainer">
-      <Link to="/chosen-campground">
+      <Link to="/chosen-campground" state={{ campground: campground }} >
     <img className="CampGroundPhoto" src={campground.MEDIA[0].URL}/>
     <div className="CampGroundName">{campground.FacilityName}</div>
     <div className="CampGroundLat">Lattitude:{campground.FacilityLatitude}</div>
