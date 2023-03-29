@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
+
+import CampGroundsList from '../CampgroundsList';
+
 import NewTripInput from './NewTripInput';
+
 
 
 
@@ -21,7 +25,7 @@ return(
    <NewTripInput />
    <hr />
    <div className='container'>
-   
+   <CampGroundsList />
    </div>
    </div>
  )
