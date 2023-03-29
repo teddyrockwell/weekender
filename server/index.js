@@ -4,6 +4,11 @@ const passport = require('passport');
 const passportSetup = require('./passport')
 const authRoute = require('./routes/auth');
 
+// const weatherRoute = require('./routes/weather');
+ const campGroundsRoute = require('./routes/campgrounds');
+
+
+
 const List = require('./routes/packing');
 const AddingTrip = require('./routes/trips'); // THEO
 const bodyparser = require('body-parser');
@@ -46,8 +51,12 @@ app.use("/auth", authRoute);
 
 app.use("/packing", List);
 
-// app.use("/campGrounds", campGroundsRoute);
+app.use("/campgrounds", campGroundsRoute);
+
+
+
 app.use("/trips", AddingTrip); // THEO
+
 
 
 

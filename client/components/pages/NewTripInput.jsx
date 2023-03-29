@@ -65,11 +65,15 @@ const DatePickerEnd = ({ endDate, setEndDate }) => {
   };
 
 
-const NewTripInput = () => {
+const NewTripInput = ({updateNewTripState}) => {
   // handle the state setting here
   const [ selectedState, setSelectedState ] = useState('');
   const [ startDate, setStartDate ] = useState('');
   const [ endDate, setEndDate ] = useState('');
+
+
+  //function passed from parent to grab the state and bring it up
+  updateNewTripState(selectedState, startDate, endDate);
 
   // passing props => selectedState={selectedState}, startDate={startDate}, endDate={end}
 
