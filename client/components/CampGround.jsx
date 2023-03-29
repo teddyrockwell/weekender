@@ -13,7 +13,7 @@ const CampGround = ({campground})=>{
       <Link to="/chosen-campground" state={{ campground: campground }} >
     <img className="CampGroundPhoto" src={campground.MEDIA[0].URL}/>
     <div className="CampGroundName">{campground.FacilityName}</div>
-    <div className="CampGroundLat">Lattitude:{campground.FacilityLatitude}</div>
+    <div className="CampGroundLat">Latitude:{campground.FacilityLatitude}</div>
     <div className="CampGroundLong">Longitude:{campground.FacilityLongitude}</div>
     </Link>
      </div>

@@ -5,6 +5,8 @@ const passportSetup = require('./passport')
 const authRoute = require('./routes/auth');
 
 const List = require('./routes/packing');
+const AddingTrip = require('./routes/trips'); // THEO
+const bodyparser = require('body-parser');
 const cors = require('cors');
 const path = require ('path');
 // const dotenv = require('dotenv');
@@ -17,7 +19,7 @@ require('dotenv').config();
 //   });
 
 const app = express();
-
+app.use(bodyparser.json()); // THEO
 app.use(express.static(clientPath));
 
 //start a new cookie session
@@ -43,6 +45,10 @@ app.use(cors({
 app.use("/auth", authRoute);
 
 app.use("/packing", List);
+
+// app.use("/campGrounds", campGroundsRoute);
+app.use("/trips", AddingTrip); // THEO
+
 
 
 // app.get('/auth/google',

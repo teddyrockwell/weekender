@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 const ChosenCampground = ()=>{
 const location = useLocation();
 const { campground }= location.state
-console.log(campground)
+console.log(campground);
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
@@ -26,7 +26,7 @@ return(
    <button className='goBackButton'>GO BACK</button>
    </Link>
    <div className="ChosenCampGroundDesc"dangerouslySetInnerHTML={{ __html: campground.FacilityDescription }} />
-    <div className="ChosenCampGroundLat">Lattitude:{campground.FacilityLatitude}</div>
+    <div className="ChosenCampGroundLat">Latitude:{campground.FacilityLatitude}</div>
     <div className="ChosenCampGroundLong">Longitude:{campground.FacilityLongitude}</div>
     </div>
     </div>
