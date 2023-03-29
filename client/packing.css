@@ -1,0 +1,10 @@
+.packing-container{
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+} 
+.packing-list{
+  font-family: 'Karantina', Arial, sans-serif;
+  border-color: black;
+  border-style: solid;
+} 

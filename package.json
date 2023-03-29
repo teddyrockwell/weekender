@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "dev": "webpack",
-    "build": "webpack"
+    "build": "webpack",
+    "packingSeed": "node server/db/packingSeed.js"
   },
   "author": "",
   "license": "MIT",
