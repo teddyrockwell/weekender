@@ -50,7 +50,7 @@ return(
    <button onClick={getAllCampgrounds}>Search</button>
    <hr />
    <div className='container'>
-   <CampGroundsList campgroundData={campgroundData}/>
+   <CampGroundsList startDate={startDate} endDate={endDate} campgroundData={campgroundData}/>
    </div>
    </div>
  )
