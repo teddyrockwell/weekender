@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
-
+import WeatherBar from '../Weatherbar';
 
 
 const ChosenCampground = ()=>{
 const location = useLocation();
 const { campground }= location.state
-console.log(campground)
+console.log(campground);
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
@@ -17,6 +17,8 @@ return(
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
      <h3 className='ChosenCampGroundName'>{campground.FacilityName}</h3>
+     <h4 className='Weatherbar'><WeatherBar campground={campground}/></h4>
+
    </h1>
    </div>
    <div className='BottomStuff'>
@@ -26,7 +28,7 @@ return(
    <button className='goBackButton'>GO BACK</button>
    </Link>
    <div className="ChosenCampGroundDesc"dangerouslySetInnerHTML={{ __html: campground.FacilityDescription }} />
-    <div className="ChosenCampGroundLat">Lattitude:{campground.FacilityLatitude}</div>
+    <div className="ChosenCampGroundLat">Latitude:{campground.FacilityLatitude}</div>
     <div className="ChosenCampGroundLong">Longitude:{campground.FacilityLongitude}</div>
     </div>
     </div>

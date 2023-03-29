@@ -19,7 +19,7 @@ const App = () => {
     const getUser = ()=>{
     axios.get(`${process.env.REACT_APP_CLIENT_URL}auth/login/success`)
     .then((response)=>{
-      console.log(response)
+      // console.log(response)
       if(response.status===200){
         return response.data
       }else{
@@ -35,7 +35,7 @@ const App = () => {
     getUser();
   }, []);
 
-console.log(user)
+// console.log(user)
 
   return (
 <BrowserRouter>

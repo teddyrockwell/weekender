@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
+
 import React, { useState, useEffect } from 'react';
 import CampGroundsList from '../CampgroundsList';
 import axios from 'axios';
+
+
+
 import NewTripInput from './NewTripInput';
-
-
 
 
 const NewTrip = ()=>{
