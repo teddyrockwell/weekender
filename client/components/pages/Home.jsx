@@ -27,9 +27,6 @@ const logout = () =>{
     <Link to="/upcoming-trip" style={{textDecoration: 'none'}}>
     <button className="upcomingTrip" >Upcoming Trip</button>
     </Link>
-    <Link to="/chosen-campground" style={{textDecoration: 'none'}}>
-    <button className="chosenCampground" >Chosen Campground</button>
-    </Link>
     </div>
     </div>
   )
