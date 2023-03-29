@@ -29,10 +29,6 @@ AddingTrip.post('/trips/:id', (req, res) => {
   // console.log('Received GET request for /trips/');
   const { id } = req.params;
 
-  // console.log(req.params, "test params");
-  // console.log(googleId)
-  // console.log(req.body, "this is the body");
-
   Trips.create(req.body.data)
     .then((trip) => {
       // Add the new trip's ID to the user's tripsIds array

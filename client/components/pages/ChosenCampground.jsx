@@ -10,20 +10,6 @@ console.log(campground);
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
 
-  // using the save button, want to add the TripSchema with it's 5 values, inside of the User's schema, in the tripsId array
-  /*
-  {
-    "data":{
-  "dateStart": "2023-03-30",
-  "dateEnd": "2023-03-31",
-  "campsiteImg": "campground.MEDIA[0].URL",
-  "campsiteName": "campground.FacilityName",
-  "campsiteDesc": "campground.FacilityDescription"
-    }
-  }
-  */
-
-
 return(
 <div>
   <div className="TopStuff">
