@@ -17,6 +17,10 @@ return(
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
      <h3 className='welcome'>THIS TRIP IS COMING UP</h3>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 1580251e82dc6ad8865cf5a959f87115502f70fb
 
    </h1>
    <div className='container'>
