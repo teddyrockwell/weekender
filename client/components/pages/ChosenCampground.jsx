@@ -5,10 +5,24 @@ import { Link, useLocation } from 'react-router-dom'
 const ChosenCampground = ()=>{
 const location = useLocation();
 const { campground }= location.state
-console.log(campground)
+console.log(campground);
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
+
+  // using the save button, want to add the TripSchema with it's 5 values, inside of the User's schema, in the tripsId array
+  /*
+  {
+    "data":{
+  "dateStart": "2023-03-30",
+  "dateEnd": "2023-03-31",
+  "campsiteImg": "campground.MEDIA[0].URL",
+  "campsiteName": "campground.FacilityName",
+  "campsiteDesc": "campground.FacilityDescription"
+    }
+  }
+  */
+
 
 return(
 <div>
@@ -26,7 +40,7 @@ return(
    <button className='goBackButton'>GO BACK</button>
    </Link>
    <div className="ChosenCampGroundDesc"dangerouslySetInnerHTML={{ __html: campground.FacilityDescription }} />
-    <div className="ChosenCampGroundLat">Lattitude:{campground.FacilityLatitude}</div>
+    <div className="ChosenCampGroundLat">Latitude:{campground.FacilityLatitude}</div>
     <div className="ChosenCampGroundLong">Longitude:{campground.FacilityLongitude}</div>
     </div>
     </div>
