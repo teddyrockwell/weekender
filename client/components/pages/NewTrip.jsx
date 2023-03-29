@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom'
-
 import CampGroundsList from '../CampgroundsList';
-
 import NewTripInput from './NewTripInput';
-
-
 
 
 const NewTrip = ()=>{

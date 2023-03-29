@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-
+import WeatherBar from '../Weatherbar';
 
 
 const ChosenCampground = ()=>{
@@ -17,6 +17,8 @@ return(
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
      <h3 className='ChosenCampGroundName'>{campground.FacilityName}</h3>
+     <h4 className='Weatherbar'><WeatherBar campground={campground}/></h4>
+
    </h1>
    </div>
    <div className='BottomStuff'>
