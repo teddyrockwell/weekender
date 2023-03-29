@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-const Weatherbar = ({ campground })=>{
+const Weatherbar = ({ startDate, endDate, campground })=>{
     const [weather, setWeather] = useState({});
     useEffect(() => {
       //  define getWeather function
-      axios.get(`https://api.open-meteo.com/v1/forecast?timezone=auto&latitude=${campground.FacilityLatitude}&longitude=${campground.FacilityLongitude}&daily=precipitation_probability_mean,uv_index_max,temperature_2m_max,temperature_2m_min,weathercode&start_date=2023-03-31&end_date=2023-04-02&temperature_unit=fahrenheit`)
+      axios.get(`https://api.open-meteo.com/v1/forecast?timezone=auto&latitude=${campground.FacilityLatitude}&longitude=${campground.FacilityLongitude}&daily=precipitation_probability_mean,uv_index_max,temperature_2m_max,temperature_2m_min,weathercode&start_date=${startDate}&end_date=${endDate}&temperature_unit=fahrenheit`)
         .then(res => {
           setWeather(res.data.daily)
         })
@@ -15,6 +15,8 @@ const Weatherbar = ({ campground })=>{
         })
       //  
     }, [])
+
+   
 
     if(weather.time){
         return(
