@@ -17,7 +17,6 @@ return(
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
      <h3 className='welcome'>THIS TRIP IS COMING UP</h3>
-     <h4 className='Weatherbar'><Weatherbar /></h4>
 
    </h1>
    <div className='container'>
