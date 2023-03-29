@@ -3,8 +3,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const passportSetup = require('./passport')
 const authRoute = require('./routes/auth');
-// const weatherRoute = require('./routes/weather');
-// const campGroundsRoute = require('./routes/campGrounds');
+
 const List = require('./routes/packing');
 const AddingTrip = require('./routes/trips'); // THEO
 const bodyparser = require('body-parser');
@@ -44,10 +43,12 @@ app.use(cors({
 // });
 
 app.use("/auth", authRoute);
-// app.use("/weather", weatherRoute);
+
 app.use("/packing", List);
+
 // app.use("/campGrounds", campGroundsRoute);
 app.use("/trips", AddingTrip); // THEO
+
 
 
 // app.get('/auth/google',

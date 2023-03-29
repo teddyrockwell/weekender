@@ -1,3 +1,4 @@
+
 const { Users, Trips } = require('../db'); // do i need trips? prob not 
 const { Router } = require('express');
 const AddingTrip = Router();
@@ -63,3 +64,23 @@ const TripSchema = new mongoose.Schema({
 */
 
 module.exports = AddingTrip;
+
+/*
+
+
+routes.get('/trips/:id', (req, res) => {
+  const { id } = req.params;
+  const { packingList } = req.body;
+  Trips.findById(id, { packingList })
+  .then((list) =>{
+    res.status(200).send(list);
+  })
+  .catch((err) => {
+    console.error('Failed to GET packing list:', err);
+    res.sendStatus(500);
+  })
+})
+
+
+module.exports = routes
+*/

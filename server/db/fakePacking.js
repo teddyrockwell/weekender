@@ -5,7 +5,7 @@ module.exports = [
     campsiteImg: '',
     campsiteName: '',
     campsiteDesc: '',
-    packingList: ['Jacket', 'Sunscreen', 'Swimsuit', 'Raincoat', 'Umbrella', 'Food', 'Sandals'],
+    packingList: ['Jacket', 'Sunscreen', 'Swimsuit', 'Raincoat', 'Umbrella', 'Food', 'Sandals', 'Sunglasses', 'Hat', 'Shorts', 'Toothpaste/brush', 'Cooler', 'Pants', 'Coat', 'Boots'],
     weatherId: ''
   }
 ];
