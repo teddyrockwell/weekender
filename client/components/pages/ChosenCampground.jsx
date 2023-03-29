@@ -4,7 +4,7 @@ import WeatherBar from '../Weatherbar';
 
 const ChosenCampground = ()=>{
 const location = useLocation();
-const { campground }= location.state
+const { campground , startDate, endDate }= location.state
 console.log(campground);
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
@@ -17,7 +17,7 @@ return(
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
      <h3 className='ChosenCampGroundName'>{campground.FacilityName}</h3>
-     <h4 className='Weatherbar'><WeatherBar campground={campground}/></h4>
+     <h4 className='Weatherbar'><WeatherBar startDate={startDate} endDate={endDate} campground={campground}/></h4>
 
    </h1>
    </div>

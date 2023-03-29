@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-const CampGround = ({campground})=>{
+const CampGround = ({startDate, endDate, campground})=>{
 
 // console.log('urltest',campground.MEDIA[0].URL)
 
@@ -10,7 +10,7 @@ const CampGround = ({campground})=>{
   
     
     <div className="CampGroundContainer">
-      <Link to="/chosen-campground" state={{ campground: campground }} >
+      <Link to="/chosen-campground" state={{ campground: campground, startDate: startDate, endDate: endDate }} >
     <img className="CampGroundPhoto" src={campground.MEDIA[0].URL}/>
     <div className="CampGroundName">{campground.FacilityName}</div>
     <div className="CampGroundLat">Latitude:{campground.FacilityLatitude}</div>
