@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import CampGroundsList from '../CampgroundsList';
-
+import axios from 'axios';
 import NewTripInput from './NewTripInput';
 
 
@@ -16,6 +16,7 @@ const NewTrip = ()=>{
   const [chosenUSASTATE, setUSASTATE] = useState('')
   const [ startDate, setStartDate ] = useState('');
   const [ endDate, setEndDate ] = useState('');
+  const [ campgroundData, setCampgroundData ] = useState('');
 
   //a function that we will pass into NewTripInput to set the state here to the values in child
   const updateNewTripState = (USstate, start, end)=>{
@@ -25,6 +26,16 @@ const NewTrip = ()=>{
   }
 
   console.log('lil-state-test:', chosenUSASTATE, startDate, endDate)
+
+  const getAllCampgrounds = ()=>{
+    return axios.get(`http://localhost:8080/campgrounds/searchByState?state=${chosenUSASTATE}`)
+    .then((response)=>{
+      setCampgroundData(response.data.RECDATA)
+    })
+
+  }
+  
+
 return(
 
   <div className="newTripPage">
@@ -35,9 +46,10 @@ return(
    </h1>
    <hr />
    <NewTripInput updateNewTripState={updateNewTripState} />
+   <button onClick={getAllCampgrounds}>Search</button>
    <hr />
    <div className='container'>
-   <CampGroundsList />
+   <CampGroundsList campgroundData={campgroundData}/>
    </div>
    </div>
  )
