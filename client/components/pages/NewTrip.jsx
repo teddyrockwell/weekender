@@ -32,7 +32,6 @@ const NewTrip = ()=>{
     .then((response)=>{
       setCampgroundData(response.data.RECDATA)
     })
-
   }
   
 
