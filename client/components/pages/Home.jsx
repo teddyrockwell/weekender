@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Weatherbar from '../Weatherbar';
 
 const Home = ({user}) =>{
 
@@ -18,6 +19,8 @@ const logout = () =>{
     <button className='logoutButton' onClick={(logout)}>Log Out</button>
       <h3 className='welcome'> Welcome Back {user.displayName.split(" ")[0]}</h3>
     </h1>
+    <div className='Weatherbar'><Weatherbar/></div>
+    
     <div className='container'>
       <Link to="/new-trip" style={{textDecoration: 'none'}}>
     <button className="addTripHome" >PLAN YOUR TRIP</button>

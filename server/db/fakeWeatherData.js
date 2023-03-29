@@ -34,3 +34,5 @@ const fakeWeatherData = {
     
 }
 
+module.exports = fakeWeatherData
+
