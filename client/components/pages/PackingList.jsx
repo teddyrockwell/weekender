@@ -2,45 +2,14 @@ import { Link, useLocation } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function PackingList(props) {
-  // const location = useLocation();
-  // const { state } = location
+function PackingList({ user }) {
+  const location = useLocation();
+  const { weatherData } = location.state
   const [list, setList] = useState([]);
-
-  const weather = {
-    time: [
-      '2023-03-31',
-      '2023-04-01',
-      '2023-04-02'
-    ],
-    precipitation_probability_mean: [
-      10,
-      55,
-      58
-    ],
-    uv_index_max: [
-      7.55,
-      7.90,
-      7.45
-    ],
-    temperature_2m_max: [
-      84.7,
-      85.4,
-      82.5
-    ],
-    temperature_2m_min: [
-      64.1,
-      70.6,
-      69.0
-    ],
-    weathercode: [
-      51,
-      51,
-      80
-    ]
-  }
+ 
   useEffect(() => {
-    createListArray(weather);
+    createListArray(weatherData);
+    getPackingList();
   }, []);
 
 
@@ -67,22 +36,44 @@ function PackingList(props) {
     }
   }
 
+  function getPackingList() {
+    axios.get(`/packing/list/${user.id}`)
+      .then((response) => {
+        const { packingList } = response.data;
+        setList(list => [...list, ...packingList]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
-  // function getList() {
-  //   axios.get(`/packing/list/642491e631241070f0868f10`)
-  //     .then(({ data }) => {
-  //     
-  //       setList(data.packingList)
-  //     })
-  //     .catch((err) => {
-  //       console.error('Could not GET packing list:', err)
-  //     })
-  // }
+  const addItem = () => {
+    // get the input field element and value
+    const inputField = document.querySelector('.add-item input');
+    const inputValue = inputField.value.trim();
+  
+    // add the new item to the list and update the state
+    if (inputValue !== '') {
+      sendItem(inputValue); // call the sendItem function with the new item value
+      // clear the input field
+      inputField.value = '';
+    }
+  };
 
-  //setList(list => [...list, data.packingList])
 
+  function sendItem(item) {
+    axios.post(`/packing/list/${user.id}`, { item })
+      .then(res => {
+        // update the list state with the new item
+        setList([...list, item]);
+      })
+      .catch(err => console.error(err));
+  }
 
  
+
+
+
 
   const logout = () => {
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
@@ -107,6 +98,10 @@ function PackingList(props) {
             </label>
           </li>)}
         </ul>
+        <div className='add-item'>
+          <input type='text' placeholder='add to packing list' />
+          <button onClick={addItem} >Add</button>
+        </div>
       </div>
     </div>
   )
