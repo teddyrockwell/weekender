@@ -180,20 +180,37 @@ Campground List styles */
 /*  WeatherBar */
 
 .WeatherbarContainer{
+  display: center;
   list-style-type: none;
-  margin: 0;
   padding: 0;
-  overflow: hidden;
-  background-color: #333333;
+  background-color: rgb(160, 63, 63);
+  overflow-x: hidden;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
 }
 
 .forecast-tombstone{
-  float: left;
-  display: block;
-  color: white;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0px auto;
+  white-space: normal;
+  font-size: 11px;
   text-align: center;
-  padding: 16px;
-  text-decoration: none;
+  padding: 15px;
+  background-color: whitesmoke;
+
+  /* 3 to a row */
+  /* 5 to a row */
+  /* 9 to a row */
+}
+
+.weekendert.forecast-tombstone .tempHigh p{
+  color: red;
+}
+.forecast-tombstone .tempLow p{
+  color: blue;
 }
 
 
