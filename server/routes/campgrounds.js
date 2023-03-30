@@ -14,12 +14,11 @@ router.get('/searchByState', (req,res)=>{
   
   axios.get('https://ridb.recreation.gov/api/v1/facilities', { params: params })
  .then((response)=>{
-  console.log('succesful get from server')
   res.send(response.data).status(200)
 })
 .catch((err)=>{
   res.sendStatus(500)
-  console.log('couldnt get',err)
+  console.error('couldnt get',err)
 })
 
 });

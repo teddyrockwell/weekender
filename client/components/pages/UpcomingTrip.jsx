@@ -10,6 +10,20 @@ const UpcomingTrip = ({user})=>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
 
+  const [trip, setTrip] = useState(null)
+
+  useEffect(() => {
+    getTrip();
+  }, []);
+
+  const getTrip = ()=>{
+    axios.get(`trips/trips/${user.id}`)
+    .then((response)=>{
+      console.log(response.data)
+      setTrip(response.data)
+    })
+  }
+
 return(
 
   <div className="newTripPage">

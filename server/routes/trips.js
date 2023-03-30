@@ -6,28 +6,24 @@ const AddingTrip = Router();
 // const app = express();
 
 AddingTrip.get('/trips/:id', (req, res) => {
-  // console.log('Received GET request for /trips/');
+  
   const { id } = req.params;
-  // console.log(req.params, "test params");
-  // console.log(googleId)
-  Users.find({googleId: id})
+
+  Users.findOne({googleId: id})
     .then((user) => {
-      if (user) {
-        console.log(user);
-        res.status(200).send(user);
-      } else {
-        console.log('User not found');
-        res.sendStatus(404);
-      }
+      Trips.findById({ _id: user.tripsIds[0] })
+      .then((trip) => {
+        res.status(200).send(trip)
+      })
     })
     .catch((err) => {
-      console.error('Failed to GET User:', err);
+      console.error('Failed to GET Trip:', err);
       res.sendStatus(500);
     });
 });
 
 AddingTrip.post('/trips/:id', (req, res) => {
-  // console.log('Received GET request for /trips/');
+  
   const { id } = req.params;
 
   Trips.create(req.body.data)
@@ -35,7 +31,6 @@ AddingTrip.post('/trips/:id', (req, res) => {
       // Add the new trip's ID to the user's tripsIds array
       Users.findOneAndUpdate({googleId: id}, {$push: {tripsIds: trip._id}}, {new: true})
         .then((user) => {
-          console.log(user);
           res.status(201).send(trip);
         })
         .catch((err) => {

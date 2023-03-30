@@ -22,7 +22,8 @@ const TripSchema = new mongoose.Schema({
     campsiteName: String,
     campsiteDesc: String,
     packingList: [String],
-    weatherId: String
+    campsiteLong: Number,
+    campsiteLat: Number
 });
 
 const WeatherSchema = new mongoose.Schema({

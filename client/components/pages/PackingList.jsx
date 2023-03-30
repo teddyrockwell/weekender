@@ -71,7 +71,7 @@ function PackingList(props) {
   // function getList() {
   //   axios.get(`/packing/list/642491e631241070f0868f10`)
   //     .then(({ data }) => {
-  //       console.log(data)
+  //     
   //       setList(data.packingList)
   //     })
   //     .catch((err) => {
@@ -82,7 +82,7 @@ function PackingList(props) {
   //setList(list => [...list, data.packingList])
 
 
-  console.log(list)
+ 
 
   const logout = () => {
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
