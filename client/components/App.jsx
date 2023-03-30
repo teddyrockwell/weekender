@@ -47,7 +47,7 @@ const App = () => {
 )}
 <Route path="/new-trip" element={<NewTrip />} />
 
-<Route path="/chosen-campground" element={<ChosenCampground/>} />
+<Route path="/chosen-campground" element={<ChosenCampground user={user}/>} />
 
 <Route path="/upcoming-trip" element={<UpcomingTrip/>} />
 <Route path="/packing-list" element={<PackingList user={user}/>} />
