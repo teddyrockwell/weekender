@@ -29,7 +29,7 @@ const NewTrip = ()=>{
 
 
   const getAllCampgrounds = ()=>{
-    return axios.get(`http://localhost:8080/campgrounds/searchByState?state=${chosenUSASTATE}`)
+    return axios.get(`/campgrounds/searchByState?state=${chosenUSASTATE}`)
     .then((response)=>{
       setCampgroundData(response.data.RECDATA)
     })
