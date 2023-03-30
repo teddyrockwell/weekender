@@ -16,7 +16,6 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
       //  
     }, [])
 
-    console.log(weather)
     const weatherIcons = [
     "https://worldweather.wmo.int/images/24a.png", 
     "https://worldweather.wmo.int/images/22a.png",
@@ -27,9 +26,12 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
     "https://worldweather.wmo.int/images/12.png",
     "https://worldweather.wmo.int/images/6.png",
     "https://worldweather.wmo.int/images/9.png",
-    "https://worldweather.wmo.int/images/8.png"
+    "https://worldweather.wmo.int/images/8.png",
+    "https://worldweather.wmo.int/images/3.png",
+    "https://worldweather.wmo.int/images/2.png"
 ]
     const getWeathercodeIcon = (weathercode) => {
+        console.log(weathercode);
         switch(weathercode){
             case 0:
                 return weatherIcons[0]
@@ -116,16 +118,23 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
             case 86:
                 return weatherIcons[10]
                 break;
+            //  thunderstorms
+            case 95:
+                return weatherIcons[11]
+                break;
+            case 96:
+                return weatherIcons[11]
+                break;
+            case 99:
+                return weatherIcons[11]
+                break;
             default:
                 return "https://worldweather.wmo.int/images/35.png"
                 break;
         }
     }
 
-
-
-
-    if(weather.time){
+    if(weather.weathercode){
         return(
             <ul className="WeatherbarContainer">
             {weather.time.map((prop, index) => {
