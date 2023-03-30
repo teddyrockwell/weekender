@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const ChosenCampground = ({ user })=>{
 const location = useLocation();
+
 const { campground , startDate, endDate }= location.state
 
   const logout = () =>{
@@ -26,6 +27,8 @@ axios.post(`trips/trips/${user.id}`,{
   }
 } ).then(()=> {
   console.log('successful trip save');
+  window.location.reload();
+  
 }).catch((err) => {
   console.error('failure', err);
 })
@@ -44,7 +47,9 @@ return(
    </div>
    <div className='BottomStuff'>
    <img className="ChosenCampGroundPhoto" src={campground.MEDIA[0].URL}/>
+   <Link to='/upcoming-trip' style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
    <button className='saveTripButton'  onClick={saveTrip}>SAVE TRIP</button>
+   </Link>
    <Link to='/new-trip' style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
    <button className='goBackButton'>GO BACK</button>
    </Link>

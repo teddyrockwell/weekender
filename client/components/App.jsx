@@ -5,6 +5,8 @@ import NewTrip from './pages/NewTrip'
 import UpcomingTrip from './pages/UpcomingTrip'
 import PackingList from './pages/PackingList'
 import ChosenCampground from './pages/ChosenCampground'
+import PastTripsBar from './pages/PastTripsBar'
+import PastTripsPage from './pages/PastTripsPage'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -26,6 +28,7 @@ const App = () => {
       }
     }).then((resObj)=>{
       setUser(resObj.user)
+      localStorage.setItem('user', JSON.stringify(resObj.user));
     })
     .catch((err)=>{
       console.error('couldnt get the user to the state', err)
@@ -49,6 +52,7 @@ const App = () => {
 
 <Route path="/upcoming-trip" element={<UpcomingTrip user={user} />} />
 <Route path="/packing-list" element={<PackingList user={user} />} />
+<Route path="/past-trips-page" element={<PastTripsPage user={user} />} />
 
 </Routes>
 </BrowserRouter>

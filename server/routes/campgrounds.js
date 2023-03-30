@@ -1,4 +1,5 @@
 const axios = require('axios')
+const REC_KEY= process.env.REC_KEY;
 const { Router } = require('express');
 const router = Router();
 
@@ -8,7 +9,7 @@ router.get('/searchByState', (req,res)=>{
 
   const params = {
     state: state,
-    apikey:'a0252faf-589b-41a2-b30e-2faa64eae779',
+    apikey:REC_KEY,
     
   }
   

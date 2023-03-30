@@ -22,6 +22,29 @@ AddingTrip.get('/trips/:id', (req, res) => {
     });
 });
 
+
+AddingTrip.get('/alltrips/:id', (req, res) => {
+  const { id } = req.params;
+
+  Users.findOne({googleId: id})
+    .then((user) => {
+      
+     
+      const promises = user.tripsIds.map((tripId)=>{
+      return Trips.findById({_id: tripId})
+    })
+      return Promise.all(promises)
+      .then((allTrips) => {
+        res.status(200).send(allTrips)
+      })
+    })
+    .catch((err) => {
+      console.error('Failed to GET All Trips:', err);
+      res.sendStatus(500);
+    });
+});
+
+
 AddingTrip.post('/trips/:id', (req, res) => {
   
   const { id } = req.params;
