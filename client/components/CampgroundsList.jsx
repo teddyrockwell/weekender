@@ -3,7 +3,7 @@ import fakeCampGroundData from '../../server/db/fakeCampGroundData';
 import CampGround from './CampGround';
 
 const CampGroundsList = ({startDate, endDate, campgroundData})=>{
-console.log('hi', campgroundData)
+
 //const fakeData = fakeCampGroundData.RECDATA
 
 

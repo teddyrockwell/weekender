@@ -27,7 +27,6 @@ const NewTrip = ()=>{
     setEndDate(end);
   }
 
-  console.log('lil-state-test:', chosenUSASTATE, startDate, endDate)
 
   const getAllCampgrounds = ()=>{
     return axios.get(`http://localhost:8080/campgrounds/searchByState?state=${chosenUSASTATE}`)

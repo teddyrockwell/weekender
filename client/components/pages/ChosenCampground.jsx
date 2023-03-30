@@ -5,7 +5,7 @@ import axios from 'axios';
 const ChosenCampground = ({ user })=>{
 const location = useLocation();
 const { campground , startDate, endDate }= location.state
-console.log(user);
+
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
@@ -13,14 +13,16 @@ console.log(user);
   // create a function that on click,
   // endpoint is 'trips/trips/:id'
 const saveTrip = () => {
-  console.log('CLICKED THE SAVE TRIP BUTTON ✅');
+
 axios.post(`trips/trips/${user.id}`,{
   "data":{
     "dateStart": startDate,
     "dateEnd": endDate,
     "campsiteImg": campground.MEDIA[0].URL,
     "campsiteName": campground.FacilityName,
-    "campsiteDesc": campground.FacilityDescription
+    "campsiteDesc": campground.FacilityDescription,
+    "campsiteLong": campground.FacilityLongitude,
+    "campsiteLat": campground.FacilityLatitude
   }
 } ).then(()=> {
   console.log('successful trip save');

@@ -6,7 +6,7 @@ const seedTrip = () => {
   .then(({ deleted }) => {
     return Trips.insertMany(fakePacking)
   })
-  .catch((err) => console.log(err))
+  .catch((err) => console.error(err))
   .finally(() => process.exit(0));
 }
 

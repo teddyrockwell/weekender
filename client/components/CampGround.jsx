@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 const CampGround = ({startDate, endDate, campground})=>{
 
-// console.log('urltest',campground.MEDIA[0].URL)
+
 
 //USE THIS TO RENDER DESCRIPTIONS ONCE A TRIP IS CLICKED ON
 // <div className="CampGroundDesc"dangerouslySetInnerHTML={{ __html: campground.FacilityDescription }} />
