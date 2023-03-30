@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import Weatherbar from '../Weatherbar';
+import TripWeatherbar from '../TripWeatherbar';
 
 
 const UpcomingTrip = ({user})=>{
@@ -19,29 +19,40 @@ const UpcomingTrip = ({user})=>{
   const getTrip = ()=>{
     axios.get(`trips/trips/${user.id}`)
     .then((response)=>{
-      console.log(response.data)
+   
       setTrip(response.data)
     })
   }
+console.log(trip)
+const [ weatherData, setweatherData ] = useState(null);
 
+//a function that we will pass weather data from weatherbar up.
+const updateWeatherDataState = (weatherdata)=>{
+ setweatherData(weatherdata)
+};
+
+
+console.log('weatherdata',weatherData)
+
+
+if(trip){
 return(
-
   <div className="newTripPage">
    <h1 className="weekendertext">
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
-     <h3 className='welcome'>THIS TRIP IS COMING UP</h3>
-    
-
+     <h3 className='welcome'>{trip.campsiteName}</h3>
    </h1>
+   <TripWeatherbar trip={trip} updateWeatherDataState={updateWeatherDataState}/>
+   <img src={trip.campsiteImg}/>
    <div className='container'>
-   <Link to="/packing-list" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
+   <Link to="/packing-list" state={{weatherData:weatherData}}style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
    <button className='listButton'>Packing List</button>
    </Link>
    </div>
    </div>
  )
-
+}
 };
 
 export default UpcomingTrip
