@@ -15,6 +15,7 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
         })
       //  
     }, [])
+
     console.log(weather)
     const weatherIcons = [
     "https://worldweather.wmo.int/images/24a.png", 
@@ -120,6 +121,9 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
                 break;
         }
     }
+
+
+
 
     if(weather.time){
         return(
