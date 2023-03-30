@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import dayjs from 'dayjs';
 
 const Weatherbar = ({ startDate, endDate, campground })=>{
     const [weather, setWeather] = useState({});
@@ -15,7 +15,7 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
         })
       //  
     }, [])
-
+    console.log(weather)
     const weatherIcons = [
     "https://worldweather.wmo.int/images/24a.png", 
     "https://worldweather.wmo.int/images/22a.png",
@@ -133,6 +133,7 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
                 break;
         }
     }
+    const daysOfWeek = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
 
     if(weather.weathercode){
         return(
@@ -140,12 +141,13 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
             {weather.time.map((prop, index) => {
                 return (
                 <li className="forecast-tombstone" key={weather.time}>
-                    <p className="date">{weather.time[index]}</p>
+                    <p className="day-of-week">{daysOfWeek[dayjs(weather.time[index]).format('d')]}</p>
+                    <p className="date">{dayjs(weather.time[index]).format('D MMM')}</p>
                     <p className="precipitation-probability">{weather.precipitation_probability_mean[index]}% Prec</p>
+                    <p className="uv-index">{weather.uv_index_max[index]} UV</p>
                     <p className="weathercode-icon"><img src={getWeathercodeIcon(weather.weathercode[index])}/></p>
-                    <p className="uv-index">UV {weather.uv_index_max[index]}</p>
-                    <p className="temp-high">High {weather.temperature_2m_max[index]}</p>
-                    <p className="temp-low">Low {weather.temperature_2m_min[index]}</p>
+                    <p className="temp-high">{weather.temperature_2m_max[index]}°F</p>
+                    <p className="temp-low">{weather.temperature_2m_min[index]}°F</p>
                 </li>  
                 )
                 
