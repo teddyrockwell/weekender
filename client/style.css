@@ -110,6 +110,67 @@ home page
 
 }
 
+
+#outerFrame{
+  margin: 50px;
+  
+}
+
+.pastTripImages {
+  height: 300px;
+  width: 90%;
+  object-fit: cover;
+  border-radius: 30px;
+  opacity: 0.9;
+  box-shadow: 5px 5px 5px #000000;
+  transition: all 0.3s ease; 
+}
+
+.pastTripImages:hover {
+  height: 310px;
+  width: 92%;
+  opacity: 1;
+  transform: scale(1.05) rotate(1deg);
+  filter: blur(2px);
+  cursor: pointer;
+  
+}
+
+.ImgFrame {
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(208, 130, 74);
+  width: 100%;
+  border-radius: 30px;
+  position: relative;
+}
+
+.text {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 5px 5px 5px #000000;
+  color: white;
+  padding: 10px;
+  font-size: 24px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: 'Karantina', Arial, sans-serif;
+  color: beige;
+  width: auto; /* Take up only as much width as necessary for text */
+  height: auto; /* Take up only as much height as necessary for text */
+  pointer-events: none;
+}
+
+.ImgFrame:hover .text {
+  opacity: 1;
+  display: inline-block;
+  
+  
+}
 /* 
 Add trip page */
 
@@ -145,6 +206,7 @@ Campground List styles */
 .CampGroundPhoto{
   width: 300px;
   height:300px;
+  border-radius: 30px;
 }
 
 /* Chosencampground page */

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Weatherbar from '../Weatherbar';
-import PastTrips from './PastTrips'
+import PastTripsBar from './PastTripsBar'
 const Home = ({user}) =>{
 
 
@@ -27,7 +27,7 @@ const logout = () =>{
     <Link to="/upcoming-trip" style={{textDecoration: 'none'}}>
     <button className="upcomingTrip" >Upcoming Trip</button>
     </Link>
-    <PastTrips user={user}/>
+    <PastTripsBar user={user}/>
     </div>
     </div>
   )

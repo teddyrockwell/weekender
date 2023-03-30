@@ -2,31 +2,17 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import TripWeatherbar from '../TripWeatherbar';
+import { useLocation } from 'react-router-dom'
 
+const PastTripsPage = ({user})=>{
 
-const UpcomingTrip = ()=>{
-  
+  const location = useLocation();
+const { trip }= location.state
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
 
-  const [trip, setTrip] = useState(null)
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-
-
-  useEffect(() => {
-    
-    getTrip();
-  }, [user]);
-
-  const getTrip = ()=>{
-    axios.get(`trips/trips/${user.id}`)
-    .then((response)=>{
-   
-      setTrip(response.data)
-    })
-  }
-console.log(trip)
+ 
 const [ weatherData, setweatherData ] = useState(null);
 
 //a function that we will pass weather data from weatherbar up.
@@ -56,11 +42,7 @@ return(
    </div>
    </div>
  )
-}else{
-  return(
-    <div></div>
-  )
 }
 };
 
-export default UpcomingTrip
+export default PastTripsPage
