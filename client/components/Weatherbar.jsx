@@ -11,7 +11,7 @@ const Weatherbar = ({ startDate, endDate, campground })=>{
           setWeather(res.data.daily)
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
         })
       //  
     }, [])

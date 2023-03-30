@@ -21,14 +21,13 @@ if(mm < 10)
     mm=`0${mm}`;
 }
 today = `${yyyy}-${mm}-${dd}`;
-// console.log(today);
+
 // get year, month, day
 // create template literal to auto update
 
 const DatePickerStart = ({ startDate, setStartDate }) => {
 const handleChange = (e) => {
   setStartDate(e.target.value);
-  console.log(e.target.value);
   };
 
   return (
@@ -48,7 +47,6 @@ const DatePickerEnd = ({ endDate, setEndDate }) => {
 
   const handleChange = (e) => {
     setEndDate(e.target.value);
-    console.log(e.target.value);
     };
 
     return (
@@ -79,7 +77,6 @@ const NewTripInput = ({updateNewTripState}) => {
 
   const handleStateChange = (e) => {
     setSelectedState(e.target.value);
-    console.log(e.target.value);
   }
 
   const stateOptions = stateLetters.map((state, index) => <option value={state} key={index}>{state}</option>)

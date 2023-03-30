@@ -19,7 +19,6 @@ const App = () => {
     const getUser = ()=>{
     axios.get(`${process.env.REACT_APP_CLIENT_URL}auth/login/success`)
     .then((response)=>{
-      // console.log(response)
       if(response.status===200){
         return response.data
       }else{
@@ -29,13 +28,12 @@ const App = () => {
       setUser(resObj.user)
     })
     .catch((err)=>{
-      console.log('couldnt get the user to the state', err)
+      console.error('couldnt get the user to the state', err)
     })
   };
     getUser();
   }, []);
 
-// console.log(user)
 
   return (
 <BrowserRouter>
@@ -47,10 +45,10 @@ const App = () => {
 )}
 <Route path="/new-trip" element={<NewTrip />} />
 
-<Route path="/chosen-campground" element={<ChosenCampground user={user}/>} />
+<Route path="/chosen-campground" element={<ChosenCampground user={user} />} />
 
-<Route path="/upcoming-trip" element={<UpcomingTrip/>} />
-<Route path="/packing-list" element={<PackingList user={user}/>} />
+<Route path="/upcoming-trip" element={<UpcomingTrip user={user} />} />
+<Route path="/packing-list" element={<PackingList user={user} />} />
 
 </Routes>
 </BrowserRouter>

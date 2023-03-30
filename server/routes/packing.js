@@ -5,15 +5,13 @@ const List = Router();
 // const app = express();
 
 List.get('/list/:id', (req, res) => {
-  // console.log('Received GET request for /packing/');
   const { id } = req.params;
   Trips.findById(id)
     .then((trip) => {
       if (trip) {
-        console.log(trip);
         res.status(200).send(trip);
       } else {
-        console.log('Trip not found');
+        console.error('Trip not found');
         res.sendStatus(404);
       }
     })
