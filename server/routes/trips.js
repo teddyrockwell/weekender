@@ -11,7 +11,7 @@ AddingTrip.get('/trips/:id', (req, res) => {
 
   Users.findOne({googleId: id})
     .then((user) => {
-      Trips.findById({ _id: user.tripsIds[0] })
+      Trips.findById({ _id: user.tripsIds[user.tripsIds.length - 1] })
       .then((trip) => {
         res.status(200).send(trip)
       })
