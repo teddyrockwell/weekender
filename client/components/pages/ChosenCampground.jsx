@@ -38,9 +38,9 @@ return(
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
    <button className='logoutButton' onClick={(logout)}>Log Out</button>
      <h3 className='ChosenCampGroundName'>{campground.FacilityName}</h3>
-     <h4 className='Weatherbar'><WeatherBar startDate={startDate} endDate={endDate} campground={campground}/></h4>
-
    </h1>
+   <div className='Weatherbar'><WeatherBar startDate={startDate} endDate={endDate} campground={campground}/></div>
+
    </div>
    <div className='BottomStuff'>
    <img className="ChosenCampGroundPhoto" src={campground.MEDIA[0].URL}/>
