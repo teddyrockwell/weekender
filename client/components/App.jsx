@@ -5,6 +5,7 @@ import NewTrip from './pages/NewTrip'
 import UpcomingTrip from './pages/UpcomingTrip'
 import PackingList from './pages/PackingList'
 import ChosenCampground from './pages/ChosenCampground'
+import PastTrips from './pages/PastTrips'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 

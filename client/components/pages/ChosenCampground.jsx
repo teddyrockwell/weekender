@@ -44,7 +44,9 @@ return(
    </div>
    <div className='BottomStuff'>
    <img className="ChosenCampGroundPhoto" src={campground.MEDIA[0].URL}/>
+   <Link to='/upcoming-trip'style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
    <button className='saveTripButton'  onClick={saveTrip}>SAVE TRIP</button>
+   </Link>
    <Link to='/new-trip' style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
    <button className='goBackButton'>GO BACK</button>
    </Link>

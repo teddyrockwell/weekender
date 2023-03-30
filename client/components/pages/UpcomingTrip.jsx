@@ -45,6 +45,7 @@ return(
    </h1>
    <TripWeatherbar trip={trip} updateWeatherDataState={updateWeatherDataState}/>
    <img src={trip.campsiteImg}/>
+   <div className="ChosenCampGroundDesc"dangerouslySetInnerHTML={{ __html: trip.campsiteDesc}} />
    <div className='container'>
    <Link to="/packing-list" state={{weatherData:weatherData}}style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
    <button className='listButton'>Packing List</button>

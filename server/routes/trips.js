@@ -11,7 +11,7 @@ AddingTrip.get('/trips/:id', (req, res) => {
 
   Users.findOne({googleId: id})
     .then((user) => {
-      Trips.findById({ _id: user.tripsIds[0] })
+      Trips.findById({ _id: user.tripsIds[user.tripsIds.length - 1] })
       .then((trip) => {
         res.status(200).send(trip)
       })
@@ -21,6 +21,29 @@ AddingTrip.get('/trips/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+
+AddingTrip.get('/alltrips/:id', (req, res) => {
+  const { id } = req.params;
+
+  Users.findOne({googleId: id})
+    .then((user) => {
+      
+     
+      const promises = user.tripsIds.map((tripId)=>{
+      return Trips.findById({_id: tripId})
+    })
+      return Promise.all(promises)
+      .then((allTrips) => {
+        res.status(200).send(allTrips)
+      })
+    })
+    .catch((err) => {
+      console.error('Failed to GET All Trips:', err);
+      res.sendStatus(500);
+    });
+});
+
 
 AddingTrip.post('/trips/:id', (req, res) => {
   
