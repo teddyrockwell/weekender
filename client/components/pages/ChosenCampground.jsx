@@ -1,6 +1,9 @@
 import { Link, useLocation } from 'react-router-dom'
 import WeatherBar from '../Weatherbar';
 import axios from 'axios';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const ChosenCampground = ({ user })=>{
 const location = useLocation();
@@ -34,19 +37,43 @@ axios.post(`trips/trips/${user.id}`,{
 })
 };
 
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+};
+
 return(
-<div>
+<div className='ChosenCampGroundPage'>
   <div className="TopStuff">
    <h1 className="weekendertext">
     <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
-   <button className='logoutButton' onClick={(logout)}>Log Out</button>
+   
      <h3 className='ChosenCampGroundName'>{campground.FacilityName}</h3>
+     <button className='logoutButton' onClick={(logout)}>Log Out</button>
    </h1>
+   </div>
    <div className='Weatherbar'><WeatherBar startDate={startDate} endDate={endDate} campground={campground}/></div>
 
+  
+   <div className='photoSlider'>
+   <Slider {...settings}>
+{campground?.MEDIA.map((image) => (
+  <div className="no">
+        <img className='ChosenCampGroundPhotos' src={image.URL} />
+        <span className="text">{campground.FacilityName}</span>
+        </div>
+))}
+</Slider>
    </div>
    <div className='BottomStuff'>
-   <img className="ChosenCampGroundPhoto" src={campground.MEDIA[0].URL}/>
+   {/* <img className="ChosenCampGroundPhoto" src={campground.MEDIA[0].URL}/> */}
+
    <Link to='/upcoming-trip' style={{textDecoration: 'none', textEmphasisColor: 'white'}}>
    <button className='saveTripButton'  onClick={saveTrip}>SAVE TRIP</button>
    </Link>
