@@ -106,7 +106,7 @@ function PackingList() {
       }
     })
       .then(response => {
-        setList([...list, item]);
+        setList([...list, { item: item, isComplete: false }]);
       })
       .catch(error => {
         console.error(error);
