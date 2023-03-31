@@ -2,18 +2,18 @@ import { Link, useLocation } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function PackingList() {
+function PackingList({ user }) {
   const location = useLocation();
   const { weatherData } = location.state
   const [list, setList] = useState([]);
 
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-
   useEffect(() => {
     // createListArray(weatherData);
-    getPackingList()
+    getPackingList();
   }, []);
 
+
+  console.log(weatherData)
 
   function createListArray(weather, list) {
     const newList = [];
@@ -62,10 +62,9 @@ function PackingList() {
         !['Swimsuit', 'Cooler', 'Sandals'].includes(item.item) &&
         !['Coat', 'Boots'].includes(item.item)
       ) {
-        if (!newList.find(obj => obj.item === item.item)) {
-          newList.push(item);
-        }
+        newList.push(item);
       }
+
     })
     setList(newList);
   }
@@ -73,14 +72,14 @@ function PackingList() {
 
 
   function getPackingList() {
-    axios
-      .get(`/packing/list/${user.id}`)
-      .then((response) => {
-        const packingListItems = response.data.packingList;
-        const newList = createListArray(weatherData, packingListItems);
-        setList(newList);
+    axios.get(`/packing/list/${user.id}`)
+      .then(response => {
+        console.log(response.data.packingList)
+        const packingListItems = response.data.packingList
+        // setList(list => [...list, ...packingListItems]);
+        createListArray(weatherData, packingListItems)
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }
@@ -141,6 +140,7 @@ function PackingList() {
 
 
 
+
   const logout = () => {
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
@@ -159,7 +159,6 @@ function PackingList() {
             <button id='del'>DEL</button>
             <label>
               <input
-                id='my-checkbox'
                 type='checkbox'
                 checked={item.isComplete}
                 onChange={(event) => handleChange(event, item)}
