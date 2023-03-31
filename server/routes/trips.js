@@ -9,9 +9,10 @@ const seedList = require('../db/packingSeed.js')
 AddingTrip.get('/trips/:id', (req, res) => {
 
   const { id } = req.params;
-
+  console.log('id', id)
   Users.findOne({ googleId: id })
     .then((user) => {
+      
       Trips.findById({ _id: user.tripsIds[user.tripsIds.length - 1] })
         .then((trip) => {
           res.status(200).send(trip)
@@ -59,6 +60,7 @@ AddingTrip.post('/trips/:id', (req, res) => {
           )
         })
         .then((user) => {
+          
           res.status(201).send(trip);
         })
         .catch((err) => {

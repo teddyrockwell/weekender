@@ -2,20 +2,42 @@
 login page
 */
 
-.weekendertext{
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.weekendertext {
   font-family: 'Karantina', Arial, sans-serif;
   color: beige;
-  margin-left: 15px;
- 
+  display: inline-block;
 }
-.googleLogin{
+
+.welcome {
+  font-family: 'Karantina', Arial, sans-serif;
+  color: beige;
+  display: inline-block;
+  text-align: center;
+  width: 33.33%;
+}
+
+.logoutButton {
   margin-right: 15px;
-  float: right;
-  size: 10px;
   font-size: 20px;
   font-family: 'Karantina', Arial, sans-serif;
   padding: 10px 40px;
   border-radius: 20px;
+  display: inline-block;
+}
+
+.googleLogin{
+  margin-right: 15px;
+  font-size: 20px;
+  font-family: 'Karantina', Arial, sans-serif;
+  padding: 10px 40px;
+  border-radius: 20px;
+  display: inline-block;
 }
 
 
@@ -39,22 +61,7 @@ body{
 home page
 */
 
-.logoutButton{
-  margin-right: 15px;
-  float: right;
-  size: 10px;
-  font-size: 20px;
-  font-family: 'Karantina', Arial, sans-serif;
-  padding: 10px 40px;
-  border-radius: 20px;
-}
 
-.welcome{
-
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
 
 .container{
   width: 80%;
@@ -74,6 +81,23 @@ home page
   background-color: rgb(208, 130, 74);
   font-family: 'Karantina', Arial, sans-serif;
   color: beige;
+  box-shadow: 5px 5px 5px #000000;
+  transition: all 0.3s ease; 
+  font-weight: bolder;
+}
+.addTripHome:hover {
+  box-shadow: 0px 0px 10px 5px rgba(208, 130, 74, 0.8);
+  box-shadow: 0px 0px 10px 5px rgba(255, 140, 57, 0.8);
+  text-shadow: 5px 5px 5px #000000;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.upcomingTrip:hover {
+  box-shadow: 0px 0px 10px 5px rgba(208, 130, 74, 0.8);
+  box-shadow: 0px 0px 10px 5px rgba(255, 140, 57, 0.8);
+  text-shadow: 5px 5px 5px #000000;
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .upcomingTrip{
@@ -84,12 +108,14 @@ home page
   margin-left: 20px;
   margin-right: 20px;
   padding: 200px 200px;
-  padding: 200px 200px;
   border-radius: 30px;
   font-size: 30px;
   background-color: rgb(208, 130, 74);
   font-family: 'Karantina', Arial, sans-serif;
   color: beige;
+  box-shadow: 5px 5px 5px #000000;
+  transition: all 0.3s ease; 
+  font-weight: bolder;
 
 }
 
@@ -206,18 +232,9 @@ Campground List styles */
   
  
   
-  .weekendertext {
-    display: flex;
-    
-    margin-right: 80px;
-    margin-left: 100px;
-    
-  }
+ 
   
-  .logoutButton {
-   
-    margin-right: 80px;
-  }
+  
   
   .ChosenCampGroundName {
     margin-right: 80px;

@@ -39,11 +39,12 @@ const NewTrip = ()=>{
 return(
 
   <div className="newTripPage">
-   <h1 className="weekendertext">
-    <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
-   <button className='logoutButton' onClick={(logout)}>Log Out</button>
-     <h3 className='welcome'>WHERE YA HEADED</h3>
-   </h1>
+     <div className="topBar">
+<h1 className="weekendertext">
+<Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link></h1>
+  <h1 className='welcome'> WHERE YA HEADED?</h1>
+  <button className='logoutButton' onClick={(logout)}>Log Out</button>
+</div>
    <hr />
    <NewTripInput updateNewTripState={updateNewTripState} />
    <button onClick={getAllCampgrounds}>Search</button>
