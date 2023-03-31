@@ -41,7 +41,7 @@ if(trips){
     {trips.map((trip) => (
       <div className="ImgFrame">
         <Link to="/past-trips-page" state={{trip:trip}}>
-            <img className='pastTripImages'key={trip._id} src={trip.campsiteImg} data-name={trip.campsiteName} title={trip.campsiteName}/>
+            <img className='pastTripImages'key={trip._id} src={trip.campsiteImg[0].URL} data-name={trip.campsiteName} title={trip.campsiteName}/>
             <span className="text">{trip.campsiteName}</span>
             </Link>
             </div>

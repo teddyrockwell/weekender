@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
 const TripSchema = new mongoose.Schema({
     dateStart: String,
     dateEnd: String,
-    campsiteImg: String,
+    campsiteImg: [Object],
     campsiteName: String,
     campsiteDesc: String,
     packingList: [PackingListSchema],

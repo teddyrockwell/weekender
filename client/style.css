@@ -217,7 +217,15 @@ Campground List styles */
   width: 300px;
   height:300px;
   border-radius: 30px;
+  box-shadow: 5px 5px 5px #505050;
+  transition: all 0.3s ease; 
+}
+.CampGroundPhoto:hover{
+  transform:1.1;
+  border-radius: 30px;
   box-shadow: 5px 5px 5px #000000;
+  transform: scale(1.05) rotate(1deg);
+  cursor: pointer;
 }
 
 /* Chosencampground page */
