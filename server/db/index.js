@@ -8,6 +8,14 @@ mongoose.connect(DB_URI)
   console.log('connected to db')
 })
 
+const PackingListSchema = new mongoose.Schema({
+  item: String,
+  isComplete: {
+      type: Boolean,
+      default: false
+  }
+});
+
 const UserSchema = new mongoose.Schema({
   username: String,
   googleId: String || Number,
@@ -21,7 +29,7 @@ const TripSchema = new mongoose.Schema({
     campsiteImg: String,
     campsiteName: String,
     campsiteDesc: String,
-    packingList: [String],
+    packingList: [PackingListSchema],
     campsiteLong: Number,
     campsiteLat: Number
 });
@@ -37,8 +45,10 @@ const WeatherSchema = new mongoose.Schema({
 
 
 
+
 module.exports = {
   Users: mongoose.model('Users', UserSchema), 
   Trips: mongoose.model('Trips', TripSchema),
-  Weather: mongoose.model('Weather', WeatherSchema)
+  Weather: mongoose.model('Weather', WeatherSchema),
+  PackingList: mongoose.model('PackingList', PackingListSchema)
 };
