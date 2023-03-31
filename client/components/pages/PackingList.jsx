@@ -2,10 +2,12 @@ import { Link, useLocation } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function PackingList({ user }) {
+function PackingList() {
   const location = useLocation();
   const { weatherData } = location.state
   const [list, setList] = useState([]);
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   useEffect(() => {
     // createListArray(weatherData);
