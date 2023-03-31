@@ -8,35 +8,65 @@ function PackingList({ user }) {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    createListArray(weatherData);
+    // createListArray(weatherData);
     getPackingList();
   }, []);
 
 
+console.log(weatherData)
 
+  function createListArray(weather, list) {
+    const newList = [];
+    console.log(list)
+    list.forEach(item => {
 
-  function createListArray(weather) {
-    const newList = ['Toothpaste/brush', 'Food'];
+      if (item.item === 'Toothpaste/brush' || item.item === 'Food') {
+        newList.push(item)
+      }
+      if ((item.item === 'Raincoat' || item.item === 'Umbrella' || item.item === 'Hat') && weather.precipitation_probability_mean.some(prob => prob > 25)) {
+        if (!newList.includes(item.item)) {
+          newList.push(item);
+        }
+      }
+      if ((item.item === 'Sunscreen' || item.item === 'Hat' || item.item === 'Sunglasses') && weather.uv_index_max.some(uv => uv > 6)) {
+        if (!newList.includes(item.item)) {
+          newList.push(item);
+        }
+      }
+      if ((item.item === 'Shorts') && weather.temperature_2m_max.some(temp => temp > 70)) {
+        if (!newList.includes(item.item)) {
+          newList.push(item);
+        }
+      }
+      if ((item.item === 'Pants' || item.item === 'Jacket') && weather.temperature_2m_min.some(temp => temp < 70)) {
+        if (!newList.includes(item.item)) {
+          newList.push(item);
+        }
+      }
+      if ((item.item === 'Swimsuit' || item.item === 'Cooler' || item.item === 'Sandals') && weather.temperature_2m_max.some(temp => temp > 80)) {
+        if (!newList.includes(item.item)) {
+          newList.push(item);
+        }
+      }
+      if ((item.item === 'Coat' || item.item === 'Boots') && weather.temperature_2m_min.some(temp => temp < 50)) {
+        if (!newList.includes(item.item)) {
+          newList.push(item);
+        }
+      }
+      if (
+        item.item !== 'Toothpaste/brush' &&
+        item.item !== 'Food' &&
+        !['Raincoat', 'Umbrella', 'Hat'].includes(item.item) &&
+        !['Sunscreen', 'Hat', 'Sunglasses'].includes(item.item) &&
+        item.item !== 'Shorts' &&
+        !['Pants', 'Jacket'].includes(item.item) &&
+        !['Swimsuit', 'Cooler', 'Sandals'].includes(item.item) &&
+        !['Coat', 'Boots'].includes(item.item)
+      ) {
+        newList.push(item);
+      }
 
-    if (weather.precipitation_probability_mean.some(prob => prob > 25)) {
-      newList.push('Raincoat', 'Umbrella', 'Hat');
-    }
-    if (weather.uv_index_max.some(uv => uv > 6)) {
-      newList.push('Sunscreen', 'Hat', 'Sunglasses');
-    }
-    if (weather.temperature_2m_max.some(temp => temp > 70)) {
-      newList.push('Shorts');
-    }
-    if (weather.temperature_2m_min.some(temp => temp < 70)) {
-      newList.push('Pants', 'Jacket');
-    }
-    if (weather.temperature_2m_max.some(temp => temp > 80)) {
-      newList.push('Swimsuit', 'Cooler', 'Sandals');
-    }
-    if (weather.temperature_2m_min.some(temp => temp < 50)) {
-      newList.push('Coat', 'Boots');
-    }
-
+    })
     setList(newList);
   }
 
@@ -45,8 +75,10 @@ function PackingList({ user }) {
   function getPackingList() {
     axios.get(`/packing/list/${user.id}`)
       .then(response => {
-        const packingListItems = response.data.packingList.map(item => item.item);
-        setList(list => [...list, ...packingListItems]);
+        console.log(response.data.packingList)
+        const packingListItems = response.data.packingList
+        // setList(list => [...list, ...packingListItems]);
+        createListArray(weatherData, packingListItems)
       })
       .catch(error => {
         console.error(error);
@@ -81,7 +113,18 @@ function PackingList({ user }) {
       });
   }
 
-
+  function handleChange(event, item) {
+    console.log('click')
+    axios.put(`/packing/list/${user.id}/${item._id}`, {
+      item: {
+        isComplete: !item.isComplete
+      }
+    })
+      .then(getPackingList())
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
 
 
@@ -89,7 +132,7 @@ function PackingList({ user }) {
   const logout = () => {
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
   }
-
+  // onChange={ updateItem }
   return (
 
     <div className="newTripPage">
@@ -101,11 +144,14 @@ function PackingList({ user }) {
       <div className='packing-container'>
         <ul className='packing-list'>
           {list.map((item, index) => <li key={index}>
+          <button id='del'>DEL</button>
             <label>
               <input
-                type='checkbox'
+                type='checkbox' 
+                checked={ item.isComplete }
+                onChange={ (event) => handleChange(event, item) }
               />
-              {item}
+              {item.item}
             </label>
           </li>)}
         </ul>

@@ -15,28 +15,28 @@ List.post('/list/:id', (req, res) => {
         _id: user.tripsIds[user.tripsIds.length - 1],
         packingList: { $elemMatch: { item: item.item } }
       })
-      .then((existingItem) => {
-        if (existingItem) {
-          res.status(409).send('dupe');
-        } else {
-          Trips.findByIdAndUpdate(
-            user.tripsIds[user.tripsIds.length - 1],
-            { $push: { packingList: item } },
-            { new: true }
-          )
-          .then((trip) => {
-            res.status(201).send(trip);
-          })
-          .catch((err) => {
-            console.error(err);
-            res.status(500).send('Server error');
-          });
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send('Server error');
-      });
+        .then((existingItem) => {
+          if (existingItem) {
+            res.status(409).send('dupe');
+          } else {
+            Trips.findByIdAndUpdate(
+              user.tripsIds[user.tripsIds.length - 1],
+              { $push: { packingList: item } },
+              { new: true }
+            )
+              .then((trip) => {
+                res.status(201).send(trip);
+              })
+              .catch((err) => {
+                console.error(err);
+                res.status(500).send('Server error');
+              });
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send('Server error');
+        });
     })
     .catch((err) => {
       console.error(err);
@@ -83,6 +83,40 @@ List.get('/list/:id', (req, res) => {
     })
     .catch((err) => {
       console.error('Failed to GET User:', err);
+      res.sendStatus(500);
+    });
+});
+
+List.put('/list/:userId/:itemId', (req, res) => {
+  const userId = req.params.userId;
+  const itemId = req.params.itemId;
+  const isComplete = req.body.item.isComplete;
+
+  Users.findOne({ googleId: userId })
+    .then((user) => {
+      Trips.findById(user.tripsIds[user.tripsIds.length - 1])
+        .then(trip => {
+          trip.packingList.forEach(item => {
+            if (item._id == itemId) {
+              item.isComplete = isComplete;
+            }
+          });
+          trip.save()
+            .then(() => {
+              res.sendStatus(200);
+            })
+            .catch(error => {
+              console.error(error);
+              res.sendStatus(500);
+            });
+        })
+        .catch(error => {
+          console.error(error);
+          res.sendStatus(500);
+        });
+    })
+    .catch(error => {
+      console.error(error);
       res.sendStatus(500);
     });
 });
