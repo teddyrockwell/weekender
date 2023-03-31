@@ -17,38 +17,38 @@ function PackingList() {
 
   function createListArray(weather, list) {
     const newList = [];
+    console.log(list)
     list.forEach(item => {
-
       if (item.item === 'Toothpaste/brush' || item.item === 'Food') {
         newList.push(item)
       }
       if ((item.item === 'Raincoat' || item.item === 'Umbrella' || item.item === 'Hat') && weather.precipitation_probability_mean.some(prob => prob > 25)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Sunscreen' || item.item === 'Hat' || item.item === 'Sunglasses') && weather.uv_index_max.some(uv => uv > 6)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Shorts') && weather.temperature_2m_max.some(temp => temp > 70)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Pants' || item.item === 'Jacket') && weather.temperature_2m_min.some(temp => temp < 70)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Swimsuit' || item.item === 'Cooler' || item.item === 'Sandals') && weather.temperature_2m_max.some(temp => temp > 80)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Coat' || item.item === 'Boots') && weather.temperature_2m_min.some(temp => temp < 50)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
@@ -62,11 +62,12 @@ function PackingList() {
         !['Swimsuit', 'Cooler', 'Sandals'].includes(item.item) &&
         !['Coat', 'Boots'].includes(item.item)
       ) {
-        newList.push(item);
+        if (!newList.find(obj => obj.item === item.item)) {
+          newList.push(item);
+        }
       }
-
     })
-    return newList;
+    setList(newList);
   }
 
 
