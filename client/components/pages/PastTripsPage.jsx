@@ -27,11 +27,12 @@ console.log('weatherdata',weatherData)
 if(trip){
 return(
   <div className="newTripPage">
-   <h1 className="weekendertext">
-    <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
-   <button className='logoutButton' onClick={(logout)}>Log Out</button>
-     <h3 className='welcome'>{trip.campsiteName}</h3>
-   </h1>
+   <div className="topBar">
+<h1 className="weekendertext">
+<Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link></h1>
+<h1 className='welcome'>{trip.campsiteName}</h1>
+  <button className='logoutButton' onClick={(logout)}>Log Out</button>
+</div>
    <TripWeatherbar trip={trip} updateWeatherDataState={updateWeatherDataState}/>
    <img src={trip.campsiteImg}/>
    <div className="ChosenCampGroundDesc"dangerouslySetInnerHTML={{ __html: trip.campsiteDesc}} />

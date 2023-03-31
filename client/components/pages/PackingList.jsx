@@ -147,11 +147,12 @@ function PackingList() {
   return (
 
     <div className="newTripPage">
-      <h1 className="weekendertext">
-        <Link to="/" style={{ textDecoration: 'none', textEmphasisColor: 'white' }}>WEEKENDER </Link>
-        <button className='logoutButton' onClick={(logout)}>Log Out</button>
-        <h3 className='welcome'>PACKING LIST PAGE</h3>
-      </h1>
+      <div className="topBar">
+<h1 className="weekendertext">
+<Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link></h1>
+<h1 className='welcome'>PACKING LIST</h1>
+  <button className='logoutButton' onClick={(logout)}>Log Out</button>
+</div>
       <div className='packing-container'>
         <ul className='packing-list'>
           {list.map((item, index) => <li key={index}>

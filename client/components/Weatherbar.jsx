@@ -4,10 +4,12 @@ import dayjs from 'dayjs';
 
 const Weatherbar = ({ startDate, endDate, campground })=>{
     const [weather, setWeather] = useState({});
+    console.log('inside weather', startDate, endDate, campground)
     useEffect(() => {
       //  define getWeather function
       axios.get(`https://api.open-meteo.com/v1/forecast?timezone=auto&latitude=${campground.FacilityLatitude}&longitude=${campground.FacilityLongitude}&daily=precipitation_probability_mean,uv_index_max,temperature_2m_max,temperature_2m_min,weathercode&start_date=${startDate}&end_date=${endDate}&temperature_unit=fahrenheit`)
         .then(res => {
+            
           setWeather(res.data.daily)
         })
         .catch(err => {

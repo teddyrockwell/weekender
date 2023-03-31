@@ -9,6 +9,7 @@ const ChosenCampground = ({ user })=>{
 const location = useLocation();
 
 const { campground , startDate, endDate }= location.state
+console.log('test',campground, startDate, endDate)
 
   const logout = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/logout`, "_self");
@@ -50,14 +51,12 @@ const settings = {
 
 return(
 <div className='ChosenCampGroundPage'>
-  <div className="TopStuff">
-   <h1 className="weekendertext">
-    <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
-   
-     <h3 className='ChosenCampGroundName'>{campground.FacilityName}</h3>
-     <button className='logoutButton' onClick={(logout)}>Log Out</button>
-   </h1>
-   </div>
+<div className="topBar">
+<h1 className="weekendertext">
+<Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link></h1>
+<h1 className='welcome'>{campground.FacilityName}</h1>
+  <button className='logoutButton' onClick={(logout)}>Log Out</button>
+</div>
    <div className='Weatherbar'><WeatherBar startDate={startDate} endDate={endDate} campground={campground}/></div>
 
   

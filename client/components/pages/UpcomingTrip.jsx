@@ -20,13 +20,14 @@ const UpcomingTrip = ()=>{
   }, [user]);
 
   const getTrip = ()=>{
+    
     axios.get(`trips/trips/${user.id}`)
     .then((response)=>{
    
       setTrip(response.data)
     })
   }
-console.log(trip)
+
 const [ weatherData, setweatherData ] = useState(null);
 
 //a function that we will pass weather data from weatherbar up.
@@ -35,17 +36,17 @@ const updateWeatherDataState = (weatherdata)=>{
 };
 
 
-console.log('weatherdata',weatherData)
 
 
 if(trip){
 return(
   <div className="newTripPage">
-   <h1 className="weekendertext">
-    <Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link>
-   <button className='logoutButton' onClick={(logout)}>Log Out</button>
-     <h3 className='welcome'>{trip.campsiteName}</h3>
-   </h1>
+  <div className="topBar">
+<h1 className="weekendertext">
+<Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link></h1>
+  <h1 className='welcome'> Welcome Back {user.displayName.split(" ")[0]}</h1>
+  <button className='logoutButton' onClick={(logout)}>Log Out</button>
+</div>
    <TripWeatherbar trip={trip} updateWeatherDataState={updateWeatherDataState}/>
    <img src={trip.campsiteImg}/>
    <div className="ChosenCampGroundDesc"dangerouslySetInnerHTML={{ __html: trip.campsiteDesc}} />
@@ -58,7 +59,7 @@ return(
  )
 }else{
   return(
-    <div></div>
+    <div>farts</div>
   )
 }
 };

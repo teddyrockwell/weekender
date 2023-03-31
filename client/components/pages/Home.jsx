@@ -15,10 +15,11 @@ const logout = () =>{
   return(
 
    <div className="home">
-    <h1 className="weekendertext">WEEKENDER
-    <button className='logoutButton' onClick={(logout)}>Log Out</button>
-      <h3 className='welcome'> Welcome Back {user.displayName.split(" ")[0]}</h3>
-    </h1>
+    <div className="topBar">
+    <h1 className="weekendertext">WEEKENDER </h1>
+      <h1 className='welcome'> Welcome Back {user.displayName.split(" ")[0]}</h1>
+      <button className='logoutButton' onClick={(logout)}>Log Out</button>
+   </div>
     
     <div className='container'>
       <Link to="/new-trip" style={{textDecoration: 'none'}}>

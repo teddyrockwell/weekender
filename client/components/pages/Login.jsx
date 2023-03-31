@@ -7,7 +7,7 @@ const Login = () =>{
     window.open(`${process.env.REACT_APP_CLIENT_URL}auth/google/`, "_self")
   }
   return(
-    <div>
+    <div className="topBar">
        
       <h1 className="weekendertext"> WEEKENDER
       <button className="googleLogin" onClick={google}>Log In</button>
