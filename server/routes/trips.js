@@ -2,19 +2,20 @@
 const { Users, Trips } = require('../db'); // do i need trips? prob not 
 const { Router } = require('express');
 const AddingTrip = Router();
+const seedList = require('../db/packingSeed.js')
 // const express = require('express');
 // const app = express();
 
 AddingTrip.get('/trips/:id', (req, res) => {
-  
+
   const { id } = req.params;
 
-  Users.findOne({googleId: id})
+  Users.findOne({ googleId: id })
     .then((user) => {
       Trips.findById({ _id: user.tripsIds[user.tripsIds.length - 1] })
-      .then((trip) => {
-        res.status(200).send(trip)
-      })
+        .then((trip) => {
+          res.status(200).send(trip)
+        })
     })
     .catch((err) => {
       console.error('Failed to GET Trip:', err);
@@ -23,13 +24,17 @@ AddingTrip.get('/trips/:id', (req, res) => {
 });
 
 AddingTrip.post('/trips/:id', (req, res) => {
-  
   const { id } = req.params;
-
   Trips.create(req.body.data)
     .then((trip) => {
-      // Add the new trip's ID to the user's tripsIds array
-      Users.findOneAndUpdate({googleId: id}, {$push: {tripsIds: trip._id}}, {new: true})
+      seedList(trip._id)
+        .then(() => {
+          return Users.findOneAndUpdate(
+            { googleId: id },
+            { $push: { tripsIds: trip._id } },
+            { new: true }
+          )
+        })
         .then((user) => {
           res.status(201).send(trip);
         })
@@ -42,8 +47,6 @@ AddingTrip.post('/trips/:id', (req, res) => {
       console.error(err);
       res.status(500).send('Failed to create trip');
     });
-
-
 });
 
 /*

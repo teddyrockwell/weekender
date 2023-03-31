@@ -6,7 +6,7 @@ function PackingList({ user }) {
   const location = useLocation();
   const { weatherData } = location.state
   const [list, setList] = useState([]);
- 
+
   useEffect(() => {
     createListArray(weatherData);
     getPackingList();
@@ -14,35 +14,41 @@ function PackingList({ user }) {
 
 
 
+
   function createListArray(weather) {
-    setList(list => [...list, 'Toothpaste/brush', 'Food'])
+    const newList = ['Toothpaste/brush', 'Food'];
+
     if (weather.precipitation_probability_mean.some(prob => prob > 25)) {
-      setList(list => [...list, 'Raincoat', 'Umbrella', 'Hat'])
+      newList.push('Raincoat', 'Umbrella', 'Hat');
     }
     if (weather.uv_index_max.some(uv => uv > 6)) {
-      setList(list => [...list, 'Sunscreen', 'Hat', 'Sunglasses'])
+      newList.push('Sunscreen', 'Hat', 'Sunglasses');
     }
     if (weather.temperature_2m_max.some(temp => temp > 70)) {
-      setList(list => [...list, 'Shorts'])
+      newList.push('Shorts');
     }
     if (weather.temperature_2m_min.some(temp => temp < 70)) {
-      setList(list => [...list, 'Pants', 'Jacket'])
+      newList.push('Pants', 'Jacket');
     }
     if (weather.temperature_2m_max.some(temp => temp > 80)) {
-      setList(list => [...list, 'Swimsuit', 'Cooler', 'Sandals'])
+      newList.push('Swimsuit', 'Cooler', 'Sandals');
     }
     if (weather.temperature_2m_min.some(temp => temp < 50)) {
-      setList(list => [...list, 'Coat', 'Boots'])
+      newList.push('Coat', 'Boots');
     }
+
+    setList(newList);
   }
+
+
 
   function getPackingList() {
     axios.get(`/packing/list/${user.id}`)
-      .then((response) => {
-        const { packingList } = response.data;
-        setList(list => [...list, ...packingList]);
+      .then(response => {
+        const packingListItems = response.data.packingList.map(item => item.item);
+        setList(list => [...list, ...packingListItems]);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }
@@ -51,26 +57,31 @@ function PackingList({ user }) {
     // get the input field element and value
     const inputField = document.querySelector('.add-item input');
     const inputValue = inputField.value.trim();
-  
-    // add the new item to the list and update the state
+
     if (inputValue !== '') {
-      sendItem(inputValue); // call the sendItem function with the new item value
-      // clear the input field
+      sendItem(inputValue);
+
       inputField.value = '';
     }
   };
 
 
   function sendItem(item) {
-    axios.post(`/packing/list/${user.id}`, { item })
-      .then(res => {
-        // update the list state with the new item
+    axios.post(`/packing/list/${user.id}`, {
+      item: {
+        item: item,
+        isComplete: false
+      }
+    })
+      .then(response => {
         setList([...list, item]);
       })
-      .catch(err => console.error(err));
+      .catch(error => {
+        console.error(error);
+      });
   }
 
- 
+
 
 
 
