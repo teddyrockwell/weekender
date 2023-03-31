@@ -2,22 +2,21 @@ import { Link, useLocation } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function PackingList({ user }) {
+function PackingList() {
   const location = useLocation();
   const { weatherData } = location.state
   const [list, setList] = useState([]);
 
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
   useEffect(() => {
     // createListArray(weatherData);
-    getPackingList();
+    getPackingList()
   }, []);
 
 
-console.log(weatherData)
-
   function createListArray(weather, list) {
     const newList = [];
-    console.log(list)
     list.forEach(item => {
 
       if (item.item === 'Toothpaste/brush' || item.item === 'Food') {
@@ -67,20 +66,20 @@ console.log(weatherData)
       }
 
     })
-    setList(newList);
+    return newList;
   }
 
 
 
   function getPackingList() {
-    axios.get(`/packing/list/${user.id}`)
-      .then(response => {
-        console.log(response.data.packingList)
-        const packingListItems = response.data.packingList
-        // setList(list => [...list, ...packingListItems]);
-        createListArray(weatherData, packingListItems)
+    axios
+      .get(`/packing/list/${user.id}`)
+      .then((response) => {
+        const packingListItems = response.data.packingList;
+        const newList = createListArray(weatherData, packingListItems);
+        setList(newList);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -114,18 +113,30 @@ console.log(weatherData)
   }
 
   function handleChange(event, item) {
-    console.log('click')
     axios.put(`/packing/list/${user.id}/${item._id}`, {
       item: {
         isComplete: !item.isComplete
       }
     })
-      .then(getPackingList())
-      .catch(error => {
-        console.error(error);
+    .then(() => {
+      setList(prevList => {
+        const newList = prevList.map(listItem => {
+          if (listItem._id === item._id) {
+            return {
+              ...listItem,
+              isComplete: !listItem.isComplete
+            };
+          } else {
+            return listItem;
+          }
+        });
+        return newList;
       });
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
-
 
 
 
@@ -144,12 +155,13 @@ console.log(weatherData)
       <div className='packing-container'>
         <ul className='packing-list'>
           {list.map((item, index) => <li key={index}>
-          <button id='del'>DEL</button>
+            <button id='del'>DEL</button>
             <label>
               <input
-                type='checkbox' 
-                checked={ item.isComplete }
-                onChange={ (event) => handleChange(event, item) }
+                id='my-checkbox'
+                type='checkbox'
+                checked={item.isComplete}
+                onChange={(event) => handleChange(event, item)}
               />
               {item.item}
             </label>
