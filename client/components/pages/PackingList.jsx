@@ -11,44 +11,46 @@ function PackingList() {
 
   useEffect(() => {
     // createListArray(weatherData);
-    getPackingList()
+    getPackingList();
   }, []);
 
 
+  console.log(weatherData)
+
   function createListArray(weather, list) {
     const newList = [];
+    console.log(list)
     list.forEach(item => {
-
       if (item.item === 'Toothpaste/brush' || item.item === 'Food') {
         newList.push(item)
       }
       if ((item.item === 'Raincoat' || item.item === 'Umbrella' || item.item === 'Hat') && weather.precipitation_probability_mean.some(prob => prob > 25)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Sunscreen' || item.item === 'Hat' || item.item === 'Sunglasses') && weather.uv_index_max.some(uv => uv > 6)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Shorts') && weather.temperature_2m_max.some(temp => temp > 70)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Pants' || item.item === 'Jacket') && weather.temperature_2m_min.some(temp => temp < 70)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Swimsuit' || item.item === 'Cooler' || item.item === 'Sandals') && weather.temperature_2m_max.some(temp => temp > 80)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
       if ((item.item === 'Coat' || item.item === 'Boots') && weather.temperature_2m_min.some(temp => temp < 50)) {
-        if (!newList.includes(item.item)) {
+        if (!newList.find(obj => obj.item === item.item)) {
           newList.push(item);
         }
       }
@@ -66,20 +68,20 @@ function PackingList() {
       }
 
     })
-    return newList;
+    setList(newList);
   }
 
 
 
   function getPackingList() {
-    axios
-      .get(`/packing/list/${user.id}`)
-      .then((response) => {
-        const packingListItems = response.data.packingList;
-        const newList = createListArray(weatherData, packingListItems);
-        setList(newList);
+    axios.get(`/packing/list/${user.id}`)
+      .then(response => {
+        console.log(response.data.packingList)
+        const packingListItems = response.data.packingList
+        // setList(list => [...list, ...packingListItems]);
+        createListArray(weatherData, packingListItems)
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }
@@ -104,8 +106,8 @@ function PackingList() {
         isComplete: false
       }
     })
-      .then(response => {
-        setList([...list, item]);
+      .then(() => {
+        setList([...list, { item: item, isComplete: false }]);
       })
       .catch(error => {
         console.error(error);
@@ -138,6 +140,15 @@ function PackingList() {
     });
   }
 
+  function deleteItem(item) {
+    axios.delete(`/packing/list/${user.id}/${item._id}`)
+      .then(() => {
+        setList(prevList => prevList.filter(listItem => listItem._id !== item._id));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
 
   const logout = () => {
@@ -155,10 +166,9 @@ function PackingList() {
       <div className='packing-container'>
         <ul className='packing-list'>
           {list.map((item, index) => <li key={index}>
-            <button id='del'>DEL</button>
+            <button id='del' onClick={() => deleteItem(item)} >DEL</button>
             <label>
               <input
-                id='my-checkbox'
                 type='checkbox'
                 checked={item.isComplete}
                 onChange={(event) => handleChange(event, item)}

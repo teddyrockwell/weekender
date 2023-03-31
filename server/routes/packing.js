@@ -121,4 +121,33 @@ List.put('/list/:userId/:itemId', (req, res) => {
     });
 });
 
+List.delete('/list/:userId/:itemId', (req, res) => {
+  const userId = req.params.userId;
+  const itemId = req.params.itemId;
+
+  Users.findOne({ googleId: userId })
+    .then((user) => {
+      Trips.findById(user.tripsIds[user.tripsIds.length - 1])
+        .then(trip => {
+          trip.packingList.pull(itemId);
+          trip.save()
+            .then(() => {
+              res.sendStatus(200);
+            })
+            .catch(error => {
+              console.error(error);
+              res.sendStatus(500);
+            });
+        })
+        .catch(error => {
+          console.error(error);
+          res.sendStatus(500);
+        });
+    })
+    .catch(error => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = List;
