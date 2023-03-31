@@ -106,7 +106,7 @@ function PackingList() {
         isComplete: false
       }
     })
-      .then(response => {
+      .then(() => {
         setList([...list, { item: item, isComplete: false }]);
       })
       .catch(error => {
@@ -140,7 +140,15 @@ function PackingList() {
     });
   }
 
-
+  function deleteItem(item) {
+    axios.delete(`/packing/list/${user.id}/${item._id}`)
+      .then(() => {
+        setList(prevList => prevList.filter(listItem => listItem._id !== item._id));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
 
   const logout = () => {
@@ -158,7 +166,7 @@ function PackingList() {
       <div className='packing-container'>
         <ul className='packing-list'>
           {list.map((item, index) => <li key={index}>
-            <button id='del'>DEL</button>
+            <button id='del' onClick={() => deleteItem(item)} >DEL</button>
             <label>
               <input
                 type='checkbox'
