@@ -22,10 +22,11 @@ if(mm < 10)
 }
 today = `${yyyy}-${mm}-${dd}`;
 
+
 // get year, month, day
 // create template literal to auto update
 
-const DatePickerStart = ({ startDate, setStartDate }) => {
+const DatePickerStart = ({ startDate, setStartDate, maxDate }) => {
 const handleChange = (e) => {
   setStartDate(e.target.value);
   };
@@ -38,12 +39,13 @@ const handleChange = (e) => {
         onChange={handleChange}
         value={startDate}
         min={today}
+        max={maxDate}
       />
     </div>
   );
 };
 
-const DatePickerEnd = ({ endDate, setEndDate }) => {
+const DatePickerEnd = ({ endDate, setEndDate, startDate, maxDate }) => {
 
   const handleChange = (e) => {
     setEndDate(e.target.value);
@@ -56,7 +58,8 @@ const DatePickerEnd = ({ endDate, setEndDate }) => {
           type="date"
           onChange={handleChange}
           value={endDate}
-          min={today}
+          min={startDate || today}
+          max={maxDate}
         />
       </div>
     );
@@ -79,22 +82,26 @@ const NewTripInput = ({updateNewTripState}) => {
     setSelectedState(e.target.value);
   }
 
+  const today = new Date();
+  const maxDate = new Date();
+  maxDate.setDate(today.getDate() + 10);
+
   const stateOptions = stateLetters.map((state, index) => <option value={state} key={index}>{state}</option>)
 
 return(
 
-    <div className='container'>
-    <label>
+    <div className='container' style={{backgroundColor: '#a8ede3', borderRadius: '2rem', padding: '1rem'}} >
+    <label style={{color: 'black', fontSize: '1.5rem'}}>
       State: 
       <select name="selectedState" value={selectedState} onChange={handleStateChange}>
         {stateOptions}
       </select>
       <br />
-      <DatePickerStart startDate={startDate} setStartDate={setStartDate} style={{backgroundColor: '#f2f2f2'}} />
-      <DatePickerEnd endDate={endDate} setEndDate={setEndDate} />
+      <DatePickerStart startDate={startDate} setStartDate={setStartDate} style={{backgroundColor: '#f2f2f2'}} maxDate={maxDate.toISOString().slice(0, 10)} />
+      <DatePickerEnd endDate={endDate} setEndDate={setEndDate} maxDate={maxDate.toISOString().slice(0, 10)} />
     </label>
     <br />
-    <p>Please select dates within 10 days of today (for accurate weather predictions):</p>
+    <h3 style={{color: 'black', textDecoration: 'underline'}}>Please select dates within 10 days of today (for accurate weather predictions):</h3>
     <DisplayTripInfo selectedState={selectedState} startDate={startDate} endDate={endDate} />
     </div>
  )

@@ -47,7 +47,7 @@ return(
 </div>
    <hr />
    <NewTripInput updateNewTripState={updateNewTripState} />
-   <button onClick={getAllCampgrounds}>Search</button>
+   <button onClick={getAllCampgrounds} style={{backgroundColor: 'green', color: 'white', width: '6rem', height: '3rem', fontSize: '1.5rem', borderRadius: '1.4rem'}} >Search</button>
    <hr />
    <div className='container'>
    <CampGroundsList startDate={startDate} endDate={endDate} campgroundData={campgroundData}/>
