@@ -21,18 +21,25 @@ const PastTripsBar = ({user})=>{
     })
   }
 console.log(trips)
+let slideNum = 0
+if(trips && trips.length >= 3){
+slideNum = 3
+}else if(trips&& trips.length < 3){
+  slideNum = trips.length
+}
+
 
 const settings = {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: slideNum,
+  slidesToScroll: slideNum,
   arrows: true,
   autoplay: true,
   autoplaySpeed: 2000,
 };
-
+console.log(trips)
 if(trips){
   return(
     // <h2>Past Trips</h2>
@@ -41,7 +48,7 @@ if(trips){
     {trips.map((trip) => (
       <div className="ImgFrame">
         <Link to="/past-trips-page" state={{trip:trip}}>
-            <img className='pastTripImages'key={trip._id} src={trip.campsiteImg} data-name={trip.campsiteName} title={trip.campsiteName}/>
+            <img className='pastTripImages'key={trip._id} src={trip.campsiteImg[0].URL} data-name={trip.campsiteName} title={trip.campsiteName}/>
             <span className="text">{trip.campsiteName}</span>
             </Link>
             </div>

@@ -23,7 +23,7 @@ axios.post(`trips/trips/${user.id}`,{
   "data":{
     "dateStart": startDate,
     "dateEnd": endDate,
-    "campsiteImg": campground.MEDIA[0].URL,
+    "campsiteImg": campground.MEDIA,
     "campsiteName": campground.FacilityName,
     "campsiteDesc": campground.FacilityDescription,
     "campsiteLong": campground.FacilityLongitude,

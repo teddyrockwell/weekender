@@ -90,7 +90,7 @@ return(
         {stateOptions}
       </select>
       <br />
-      <DatePickerStart startDate={startDate} setStartDate={setStartDate} />
+      <DatePickerStart startDate={startDate} setStartDate={setStartDate} style={{backgroundColor: '#f2f2f2'}} />
       <DatePickerEnd endDate={endDate} setEndDate={setEndDate} />
     </label>
     <br />
