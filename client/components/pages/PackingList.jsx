@@ -107,8 +107,10 @@ function PackingList() {
       }
     })
       .then(() => {
-        setList([...list, { item: item, isComplete: false }]);
+        getPackingList();
+        //setList([...list, { item: item, isComplete: false }])
       })
+      //.then(window.location.reload())
       .catch(error => {
         console.error(error);
       });
@@ -120,24 +122,24 @@ function PackingList() {
         isComplete: !item.isComplete
       }
     })
-    .then(() => {
-      setList(prevList => {
-        const newList = prevList.map(listItem => {
-          if (listItem._id === item._id) {
-            return {
-              ...listItem,
-              isComplete: !listItem.isComplete
-            };
-          } else {
-            return listItem;
-          }
+      .then(() => {
+        setList(prevList => {
+          const newList = prevList.map(listItem => {
+            if (listItem._id === item._id) {
+              return {
+                ...listItem,
+                isComplete: !listItem.isComplete
+              };
+            } else {
+              return listItem;
+            }
+          });
+          return newList;
         });
-        return newList;
+      })
+      .catch(error => {
+        console.error(error);
       });
-    })
-    .catch(error => {
-      console.error(error);
-    });
   }
 
   function deleteItem(item) {
@@ -156,35 +158,41 @@ function PackingList() {
   }
   // onChange={ updateItem }
   return (
-
     <div className="newTripPage">
       <div className="topBar">
-<h1 className="weekendertext">
-<Link to="/" style={{textDecoration: 'none', textEmphasisColor: 'white'}}>WEEKENDER </Link></h1>
-<h1 className='welcome'>PACKING LIST</h1>
-  <button className='logoutButton' onClick={(logout)}>Log Out</button>
-</div>
+        <h1 className="weekendertext">
+          <Link to="/" style={{ textDecoration: 'none', textEmphasisColor: 'white' }}>WEEKENDER </Link>
+        </h1>
+        <h1 className='welcome'>PACKING LIST</h1>
+        <button className='logoutButton' onClick={(logout)}>Log Out</button>
+      </div>
       <div className='packing-container'>
         <ul className='packing-list'>
-          {list.map((item, index) => <li key={index}>
-            <button id='del' onClick={() => deleteItem(item)} >DEL</button>
-            <label>
-              <input
-                type='checkbox'
-                checked={item.isComplete}
-                onChange={(event) => handleChange(event, item)}
-              />
-              {item.item}
-            </label>
-          </li>)}
+          {list.map((item, index) => (
+            <li key={index}>
+              <button id='del' onClick={() => deleteItem(item)} >DEL</button>
+              <label>
+                <input
+                  type='checkbox'
+                  checked={item.isComplete}
+                  onChange={(event) => handleChange(event, item)}
+                />
+                {item.item}
+              </label>
+            </li>
+          ))}
         </ul>
         <div className='add-item'>
-          <input type='text' placeholder='add to packing list' />
+          <input 
+          type='text' 
+          placeholder='add to packing list'
+          onKeyDown={ (event) => event.key === 'Enter' ? addItem() : null }
+           />
           <button onClick={addItem} >Add</button>
         </div>
       </div>
     </div>
-  )
+  );
 
 };
 
