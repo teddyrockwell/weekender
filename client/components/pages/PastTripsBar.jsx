@@ -21,18 +21,25 @@ const PastTripsBar = ({user})=>{
     })
   }
 console.log(trips)
+let slideNum = 0
+if(trips && trips.length >= 3){
+slideNum = 3
+}else if(trips&& trips.length < 3){
+  slideNum = trips.length
+}
+
 
 const settings = {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: slideNum,
+  slidesToScroll: slideNum,
   arrows: true,
   autoplay: true,
   autoplaySpeed: 2000,
 };
-
+console.log(trips)
 if(trips){
   return(
     // <h2>Past Trips</h2>

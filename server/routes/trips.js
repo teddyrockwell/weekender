@@ -49,14 +49,18 @@ AddingTrip.get('/alltrips/:id', (req, res) => {
 
 AddingTrip.post('/trips/:id', (req, res) => {
   const { id } = req.params;
+  console.log(id)
   Trips.create(req.body.data)
     .then((trip) => {
+      console.log('test', trip)
       seedList(trip._id)
         .then(() => {
+          
           return Users.findOneAndUpdate(
             { googleId: id },
             { $push: { tripsIds: trip._id } },
-            { new: true }
+            { new: true },
+            
           )
         })
         .then((user) => {
@@ -64,12 +68,12 @@ AddingTrip.post('/trips/:id', (req, res) => {
           res.status(201).send(trip);
         })
         .catch((err) => {
-          console.error(err);
+          //console.error(err);
           res.status(500).send('Failed to update user');
         });
     })
     .catch((err) => {
-      console.error(err);
+      // console.error(err);
       res.status(500).send('Failed to create trip');
     });
 });

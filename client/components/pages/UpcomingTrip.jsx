@@ -23,10 +23,10 @@ const UpcomingTrip = ()=>{
   }, [user]);
 
   const getTrip = ()=>{
-    
+    console.log(user)
     axios.get(`trips/trips/${user.id}`)
     .then((response)=>{
-   
+   console.log(response.data)
       setTrip(response.data)
     })
   }

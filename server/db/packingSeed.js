@@ -68,7 +68,17 @@ const seedList = (tripId) => {
   return Trips.findOneAndUpdate(
     { _id: tripId },
     { packingList: list },
-    { new: true }
+    { new: true },
+    // { campsiteDesc: "<h2>An Amazing Getaway Just For You!</h2>"},
+    // { campsiteImg: [{URL:"https://cdn.recreation.gov/public/images/68613.jpg"},{URL:"https://cdn.recreation.gov/public/images/68805.jpg"}]},
+    // { campsiteLat: 37.3902778 },
+    // { campsiteLong: -107.54 },
+    // { campsiteName: "GRAHAM CREEK CAMPGROUND" },
+    // { dateEnd: "2023-04-03" },
+    // { dateStart: "2023-04-08" }
+
+
+
   )
     .then((trip) => {
       console.log(`success`);
